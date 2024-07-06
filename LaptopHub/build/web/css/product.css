@@ -1,0 +1,231 @@
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center; /* Align search bar center */
+    margin-bottom: 30px; /* Provide space below search bar */
+}
+
+.searchTerm {
+    width: 700px;
+    border: 3px solid transparent;
+    border-right: none;
+    padding: 5px;
+    height: 50px;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    color: #8c8e8d;
+    transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+.searchTerm:focus {
+    border-color: #460E6D; /* Change border color when focused */
+    color: #460E6D; /* Change text color when focused */
+}
+
+.searchButton {
+    width: 105px;
+    height: 65px;
+    border: 1px solid #460E6D;
+    background: #460E6D;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Add transition */
+}
+
+.searchButton:hover {
+    background-color: #6F1D99;
+    transform: scale(1.1); /* Scale up the button on hover */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add subtle shadow on hover */
+}
+
+.wrap {
+    width: 30%;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* search-bar.css */
+
+.search-bar {
+    height: 500px;
+    width: 100%;
+    background-image: url(../images/logo/searchBar.png);
+    background-size: cover; /* Ensure the background image covers the entire container */
+    background-position: center; /* Center the background image */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+.search-bar .title h1 {
+    color: white;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add subtle text shadow for better readability */
+}
+
+.search-content {
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bar .search-box input {
+    width: 480px;
+    height: 40px;
+    font-family: "Times New Roman", Times, serif;
+    border: none;
+    margin-right: 20px;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+/*end search bar*/
+
+/* sorted by  */
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 20px;
+    padding-left: 30px;
+}
+
+.custom-dropbtn {
+    background-color: #460E6D;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.custom-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white; /* Nền màu trắng */
+    color: black; /* Chữ màu đen */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.custom-dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.custom-dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.custom-dropdown:hover .custom-dropdown-content {
+    display: block;
+}
+
+.custom-dropdown:hover .custom-dropbtn {
+    background-color: #6F1D99;
+}
+
+/*end sorted by bar */
+/* laptop.css */
+.all-product {
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.all-product .title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.all-product .title h2 {
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.all-product .main-product {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.all-product .each-product {
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.all-product .each-product:hover {
+    background-color: rgb(219, 214, 214);
+    transform: translateY(-5px);
+}
+
+.all-product .image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 225px;
+}
+
+.all-product .image img {
+    height: 150px;
+    width: 150px;
+}
+
+.all-product .product {
+    margin-top: 10px;
+}
+
+.all-product .name {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.all-product .info {
+    margin-top: 5px;
+}
+
+.all-product .info p {
+    margin: 0;
+}
+
+.all-product .info .sale {
+    text-decoration: line-through;
+}
+
+.all-product .link {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #460E6D;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+}
+
+.all-product .link:hover {
+    background-color: #6F1D99;
+}
+    

@@ -1,0 +1,132 @@
+.prd-body{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.general-info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 1200px;
+    height: 600px;
+    
+}
+
+.left-side{
+    display: grid;
+    grid-template-rows: 480px 120px;
+    padding-right: 10px;
+}
+
+.show-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 480px;
+}
+
+.show-bar img{
+    height: 320px;
+    width: 320px;
+}
+
+.small-image{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.small-image .image{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.small-image img{
+    width: 80px;
+    height: 80px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.right-side{
+    display: grid;
+    grid-template-rows: 120px 330px 30px 120px;
+    padding-left: 10px; 
+}
+.checked {
+  color: orange;
+}
+
+.sale{
+    text-decoration: line-through;
+}
+
+.buy-bar{
+    display: inline;
+    justify-content: center;
+}
+
+input[type=submit] {
+  width: 45%;
+  background: linear-gradient(to right, #000, #460E6D);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+input[type=submit]:hover {
+  background: linear-gradient(#000000, #460E6D, #7806c8);
+}
+
+.detail-info{
+    width: 1200px;
+    background-color: #dfdfdf;
+    margin-bottom: 30px;
+    overflow-wrap: break-word;
+}
+
+.detail-info p{
+    margin: 20px;
+}
+
+.quantity input{
+    width: 40px;
+    text-align: center;
+}
+
+.quantity i{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.price h3{
+    font-weight: bolder;
+    background: -webkit-linear-gradient(#0000cc, #990099);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.prd-name .name{
+  font-weight: bold;
+  background: -webkit-linear-gradient(#33ccff, #6600cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+        
+
+
+

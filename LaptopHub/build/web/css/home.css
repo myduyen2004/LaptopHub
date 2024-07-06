@@ -1,0 +1,285 @@
+*{
+    margin: 0;
+}
+/* search.css */
+
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center; /* Align search bar center */
+    margin-bottom: 30px; /* Provide space below search bar */
+}
+
+.searchTerm {
+    width: 700px;
+    border: 3px solid transparent;
+    border-right: none;
+    padding: 5px;
+    height: 50px;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    color: #8c8e8d;
+    transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+.searchTerm:focus {
+    border-color: #460E6D; /* Change border color when focused */
+    color: #460E6D; /* Change text color when focused */
+}
+
+.searchButton {
+    width: 105px;
+    height: 65px;
+    border: 1px solid #460E6D;
+    background: #460E6D;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Add transition */
+}
+
+.searchButton:hover {
+    background-color: #6F1D99;
+    transform: scale(1.1); /* Scale up the button on hover */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add subtle shadow on hover */
+}
+
+.wrap {
+    width: 30%;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* search-bar.css */
+
+.search-bar {
+    height: 500px;
+    width: 97.3%;
+    background-image: url(../images/logo/searchBar.png);
+    background-size: cover; /* Ensure the background image covers the entire container */
+    background-position: center; /* Center the background image */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.search-bar .title h1 {
+    color: white;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add subtle text shadow for better readability */
+}
+
+.search-content {
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bar .search-box input {
+    width: 480px;
+    height: 40px;
+    font-family: "Times New Roman", Times, serif;
+    border: none;
+    margin-right: 20px;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+
+/*CSS category*/
+.category{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 5px;
+    margin-left: 5px;
+    height: 300px;
+}
+
+.category .title{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.category .title h2{
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+}
+
+.category .detail{
+    align-content: center;
+}
+
+.category .detail{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-left: 100px;
+    margin-right: 100px;
+    height: 200px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: transparent;
+}
+
+.category .detail .each-cate{
+    width: 330px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+}
+.each-cate:hover{
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
+}
+
+.category .detail .each-cate{
+    display: grid;
+    grid-template-rows: 1.5fr 0.5fr;
+    height: 200px;
+
+}
+
+.category .detail .category-img{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+.category .detail .category-img a{
+    align-content: center;
+}
+
+.category .detail .name h2{
+    font-family: "Times New Roman", Times, serif;
+}
+
+/*Sản phẩm mới nhất*/
+
+.top10-product .title{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.top10-product .title h2{
+    font-family: "Times New Roman", Times, serif;
+    font-weight: bold;
+}
+
+.detail-top-10{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr ;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.each-product{
+    margin: 20px 10px;
+    border: solid transparent;
+    opacity: 1;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, opacity 0.3s, transform 0.3s;
+}
+.each-product:hover{
+    background-color: rgb(219, 214, 214);
+    
+    /* Hiệu ứng nổi lên */
+    transform: translateY(-5px);
+}
+
+
+.detail-top-10 .image{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 225px;
+}
+
+.detail-top-10 .image img{
+    height: 150px;
+    width: 150px;
+}
+
+.detail-top-10 .name h4{
+    font-family: "Times New Roman", Times, serif;
+
+}
+
+.detail-top-10 .info h4{
+    font-family: "Times New Roman", Times, serif;
+}
+
+.detail-top-10 .info p{
+    font-family: "Times New Roman", Times, serif;
+
+}
+.info{
+    padding: 15px ;
+}
+.name{
+    height: 90px;
+}
+.detail-top-10 .sale{
+    text-decoration: line-through;
+}
+.checked {
+    color: orange;
+}
+.link{
+    text-decoration: none;
+}
+.link{
+    background-color: white;
+    color: black;
+    border: 2px solid #460E6D;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px 40px;
+    border-radius: 20px;
+
+}
+
+.link:hover, .link:active {
+    background-color: #460E6D;
+    color: white;
+
+}
+.product{
+    margin-left: 30px;
+    line-height: 35px;
+}
+
+.price{
+    background-color: #460E6D;
+    color: rgb(255, 255, 255);
+    border: solid #460E6D;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 20px;
+    margin-left: 0;
+}
+.imgProduct{
+    width: 225px;
+    height: 225px;
+}

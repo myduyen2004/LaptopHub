@@ -1,0 +1,75 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : Jul 5, 2024, 11:49:00 PM
+    Author     : admin
+*/
+
+/* General styles */
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #f9f9f9;
+}
+
+/* Checkout section styles */
+.Checkout_section {
+    margin-top: 50px;
+}
+
+.checkout_form {
+    background-color: #fff;
+    padding: 30px;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Title styles */
+h3 {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Form styles */
+label {
+    font-weight: bold;
+}
+
+/* Table styles */
+.table th,
+.table td {
+    text-align: center;
+}
+
+.order_total th,
+.order_total td {
+    font-weight: bold;
+}
+
+/* Payment method styles */
+.payment_method .form-check {
+    padding-bottom: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.payment_method img {
+    width: 20px;
+    margin-left: 5px;
+}
+
+.order_button .btn {
+    background-color:  #111111;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+.order_button .btn:hover {
+    background-color: #460E6D;
+}
