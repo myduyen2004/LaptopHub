@@ -11,6 +11,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import laptophub.dal.UserDAO;
+import laptophub.model.User;
 
 /**
  *
@@ -53,7 +56,16 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        String command = request.getParameter("cmd");
+        if(command == null){
+                command = "show";
+            }
+        switch(command){
+            case "show": showProfile(request, response);
+            case "load": loadProfile(request, response);
+            case "update": updateProfile(request, response);
+            default: showProfile(request, response);
+        }
     } 
 
     /** 
@@ -78,4 +90,37 @@ public class ProfileServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    public void showProfile(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        UserDAO uDao = new UserDAO();
+        HttpSession session = request.getSession(true);
+        String name = (String)session.getAttribute("sessuser");
+        User u = uDao.getUser(name);
+        request.setAttribute("USER", u);
+        request.getRequestDispatcher("profile.jsp").forward(request, response);
+    }
+    
+    public void loadProfile(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        UserDAO uDao = new UserDAO();
+        HttpSession session = request.getSession(true);
+        String name = (String)session.getAttribute("sessuser");
+        User u = uDao.getUser(name);
+        request.setAttribute("USER", u);
+        request.getRequestDispatcher("updateprofile.jsp").forward(request, response);
+    }
+    
+    public void updateProfile(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        UserDAO uDao = new UserDAO();
+        HttpSession session = request.getSession();
+        String name = (String)session.getAttribute("sessuser");
+        String fullName = request.getParameter("fullName");
+        String dob = request.getParameter("dob");
+        String address = request.getParameter("address");
+        String phone = request.getParameter("phone");
+        String email = request.getParameter("email");
+        uDao.updateBasicInfoUser(name, fullName, dob, address, phone, email);
+        showProfile(request, response);
+    }
 }

@@ -59,7 +59,7 @@ public class User {
     
 
 
-       public User(String userName, int userId, String fullName, String password, int roleId, String image, String birthday, String address, String phone, boolean status) {
+       public User(String userName, int userId, String fullName, String password, int roleId, String image, String birthday, String address, String phone, boolean status, String email) {
         this.userName = userName;
         this.userId = userId;
         this.fullName = fullName;
@@ -70,9 +70,10 @@ public class User {
         this.address = address;
         this.phone = phone;
         this.status = status;
+        this.email = email;
     }
 
-    public User(String userName, String fullName, String password, int roleId, String image, String birthday, String address, String phone, boolean status) {
+    public User(String userName, String fullName, String password, int roleId, String image, String birthday, String address, String phone, boolean status, String email) {
         this.userName = userName;
         this.fullName = fullName;
         this.password = password;
@@ -82,6 +83,7 @@ public class User {
         this.address = address;
         this.phone = phone;
         this.status = status;
+        this.email = email;
     }
 
 

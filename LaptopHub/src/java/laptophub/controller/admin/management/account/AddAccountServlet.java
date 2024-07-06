@@ -84,7 +84,7 @@ public class AddAccountServlet extends HttpServlet {
         int roleId = 1; 
         boolean status = true;
         String img="./images/avatar/default.jpg";
-        User u = new User(userName, fullName,password , roleId, img, birthdayStr, address, phone, status);
+        User u = new User(userName, fullName,password , roleId, img, birthdayStr, address, phone, status, email);
         UserDAO ud = new UserDAO();
         try {
             ud.insertUser(u);

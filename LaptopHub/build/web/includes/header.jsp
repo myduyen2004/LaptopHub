@@ -162,7 +162,7 @@
             </div>
         </li>
         <li class="logo">
-            <a href="HomeServlet"><img src="http://localhost:8080/LaptopHubWeb/images/logo/logo.png" alt="logo"/></a>
+            <a href="HomeServlet"><img src="./images/logo/logo.png" alt="logo"/></a>
         </li>
         <li><a href="aboutUs.jsp">VỀ CHÚNG TÔI</a></li>
         <li class="personal">
@@ -185,7 +185,7 @@
             <%if (session.getAttribute("sessuser") == null){%>
             <a href="login.jsp" class="dropbtn"><i class="fas fa-user"></i></a>
             <%}else{%>
-            <a href="#" class=""><i class="fas fa-user"></i></a>
+            <a href="ProfileServlet"><i class="fas fa-user"></i></a>
             <a href="LogoutServlet"><i class="fa-solid fa-right-from-bracket"></i></a>
                 <%}%>
 

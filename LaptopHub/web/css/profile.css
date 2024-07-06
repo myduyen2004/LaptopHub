@@ -1,0 +1,122 @@
+.user-general{
+    display: flex;
+    height: 100px;
+    margin: 35px 140px;
+    align-items: center;
+}
+
+.user-general img{
+    width: 50px;
+    height: 50px;
+    border: 5px solid #000066;
+    border-radius: 30px;
+}
+
+.user-general h3{
+    font-size: 24px;
+}
+
+.user-general h5{
+    font-size: 20px;
+}
+
+.info-general{
+    margin: 0px 30px;
+}
+
+.info{
+    display: grid;
+    grid-template-columns: 1.5fr 2.5fr;
+    margin: 0px 120px;
+    margin-bottom: 30px;
+    border: 5px solid #e0e0eb;
+}
+
+.info li{
+    list-style: none;
+    font-size: 24px;
+    height: 50px;
+    width: 350px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 5px solid #000066;
+    border-radius: 30px;
+    padding-left: 15px;
+    align-content: center;
+}
+
+.your-account, .update{
+    background: linear-gradient(to right, #000, #460E6D);
+    color: white;
+}
+
+.info li:hover{
+    background: linear-gradient(to left, #000066 24%, #660066 100%);;
+    color: white;
+}
+
+.info li:active{
+    background: linear-gradient(to left, #000099 24%, #990099 100%);
+    color: white;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.right-side{
+    background-color: #e0e0eb;
+}
+
+table{
+    margin-left: 30px;
+    margin-top: 15px;
+    height: 400px;
+    width: 700px;
+}
+
+table tr{
+    border-style: solid;
+    border-width: 0px 0px 4px 0px;
+    border-color: red;
+}
+
+table td{
+    font-size: 22px;
+    border: 2px solid white;
+    padding-left: 10px;
+}
+
+input[type=submit] {
+  width: 50%;
+  background: linear-gradient(to right, #000, #460E6D);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 25%;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+  font-family: "Times New Roman", Times, serif;
+  
+}
+
+input[type=submit]:hover {
+  background: linear-gradient(#000000, #460E6D, #7806c8);
+}
+
+
+input[type=text], input[type=number]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input{
+    font-size: 22px;
+}
