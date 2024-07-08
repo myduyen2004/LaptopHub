@@ -326,40 +326,40 @@ public class ProductDAO {
         return id;
     }
 
-    public Product getProduct(int id) {
-        String sql = "SELECT * FROM Product WHERE productId=?";
-        Product p = null;
-        try (Connection con = db.openConnection()) {
-            PreparedStatement statement = con.prepareStatement(sql);
-            ResultSet rs = statement.executeQuery();
-            
-            if (rs.next()) {
-                int productId = rs.getInt("productId");
-                int supplierId = rs.getInt("supplierId");
-                int categoryId = rs.getInt("categoryId");
-                String productName = rs.getNString("productName");
-                int quantityPerUnit = rs.getInt("quantityPerUnit");
-                int unitPrice = rs.getInt("unitPrice");
-                int unitInStock = rs.getInt("unitInStock");
-                int quantitySold = rs.getInt("quantitySold");
-                int starRating = rs.getInt("starRating");
-                boolean isDiscount = rs.getBoolean("isDiscount");
-                String description = rs.getNString("description");
-                Date releaseDate = rs.getDate("releaseDate");
-                float discount = rs.getFloat("discount");
-                boolean status = rs.getBoolean("status");
-                p = new Product(productId, supplierId, categoryId, productName, quantityPerUnit, unitPrice, unitInStock,
-                        quantitySold, starRating, isDiscount, description, releaseDate, discount, status);
-            }
-            rs.close();
-            statement.close();
-
-        } catch (Exception ex) {
-            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-        return p;
-    }
+//    public Product getProduct(int id) {
+//        String sql = "SELECT * FROM Product WHERE productId=?";
+//        Product p = null;
+//        try (Connection con = db.openConnection()) {
+//            PreparedStatement statement = con.prepareStatement(sql);
+//            ResultSet rs = statement.executeQuery();
+//            
+//            if (rs.next()) {
+//                int productId = rs.getInt("productId");
+//                int supplierId = rs.getInt("supplierId");
+//                int categoryId = rs.getInt("categoryId");
+//                String productName = rs.getNString("productName");
+//                int quantityPerUnit = rs.getInt("quantityPerUnit");
+//                int unitPrice = rs.getInt("unitPrice");
+//                int unitInStock = rs.getInt("unitInStock");
+//                int quantitySold = rs.getInt("quantitySold");
+//                int starRating = rs.getInt("starRating");
+//                boolean isDiscount = rs.getBoolean("isDiscount");
+//                String description = rs.getNString("description");
+//                Date releaseDate = rs.getDate("releaseDate");
+//                float discount = rs.getFloat("discount");
+//                boolean status = rs.getBoolean("status");
+//                p = new Product(productId, supplierId, categoryId, productName, quantityPerUnit, unitPrice, unitInStock,
+//                        quantitySold, starRating, isDiscount, description, releaseDate, discount, status);
+//            }
+//            rs.close();
+//            statement.close();
+//
+//        } catch (Exception ex) {
+//            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+//
+//        }
+//        return p;
+//    }
 
     public void deleteProduct(int productId) {
         String sql = "DELETE FROM Product WHERE productId=?";

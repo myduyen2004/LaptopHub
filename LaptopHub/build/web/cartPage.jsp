@@ -97,7 +97,7 @@
             .flag img {
                 border-radius: 5px;
             }
-            
+
 
         </style>
     </head>
@@ -127,7 +127,7 @@
 
             </table>
             <table border="1px" width="1200px">
-                
+
                 <tr>
                     <th>STT</th>
                     <th>Hình ảnh</th>
@@ -137,41 +137,41 @@
                     <th>Đơn Giá</th>
                     <th></th>
                 </tr>
-            
-                <c:set var="o" value="${sessionScope.cart}"/>
-                
-                    <c:forEach items="${o.items}" var="i" varStatus="status">
-                        <c:set var="tt" value="${tt+1}"/>
-                        <tr style="height: 170px;">
-                            <td>${status.index + 1}</td>
-                            <td><img style="height: 60px; width: 60px; margin-left: 20px" src="${i.product.getImageList().get(1).getImageUrl()}" alt="alt"/></td>
-                            <td>${i.product.getProductName()}</td>
-                            <td>
-                                <h5 class="sale-price">${i.getPricePerUnitAfterDiscount()}</h5>
-                            </td>
-                            <td>
-                                <input name="quantity" min="1" max="100" value="${i.quantity}" type="number" >
-                            </td>
-                            <td id="totalPrice${status.index}">${i.getTotalMoney()}</td>
-                            <td style="text-align: center">
-                                <input type="hidden" name="id" value="${i.product.getProductId()}"/>
-                                <a href="CartServlet?action=deletecart&product_id=${i.product.getProductId()}"><i class="fa fa-trash-o"></i></a>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </table>
+                <c:set var="o" value="${requestScope.cart}"/>
+
+                <c:forEach items="${o.items}" var="i" varStatus="status">
+                    <c:set var="tt" value="${tt+1}"/>
+                    <tr style="height: 170px;">
+                        <td>${status.index + 1}</td>
+                        <td><img style="height: 60px; width: 60px; margin-left: 20px" src="${i.product.getImageList().get(1).getImageUrl()}" alt="alt"/></td>
+                        <td>${i.product.getProductName()}</td>
+                        <td>
+                            <h5 class="sale-price">${i.getPricePerUnitAfterDiscount()}</h5>
+                        </td>
+                        <td>
+                            <input name="quantity" min="1" max="100" value="${i.quantity}" type="number" >
+                        </td>
+                        <td id="totalPrice${status.index}">${i.getTotalMoney()}</td>
+                        <td style="text-align: center">
+                            <input type="hidden" name="id" value="${i.product.getProductId()}"/>
+                            <a href="CartServlet?action=deletecart&product_id=${i.product.getProductId()}"><i class="fa fa-trash-o"></i></a>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+            <form action="Checkout" method="GET">
                 <div class="total-cart">
                     <table>
                         <tr>
                             <td><h3>Thành Tiền</h3></td>
                             <td><h3 id="grandTotal">${o.getTotalMoney()}</h3></td>
-                            <td><input type="submit" value="Thanh Toán" href="#" class="button"/></td>
+                            <td><input type="submit" value="Thanh Toán" class="button"/></td>
                         </tr>
                     </table>
                 </div>
-                            
-                </body>
-                <br><br>
-                <br><br>
-                <%@include file="/includes/footer.jsp" %>
-                </html>
+            </form>            
+    </body>
+    <br><br>
+    <br><br>
+    <%@include file="/includes/footer.jsp" %>
+</html>

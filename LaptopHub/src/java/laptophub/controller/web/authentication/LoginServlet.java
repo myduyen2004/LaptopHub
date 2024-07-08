@@ -101,6 +101,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("avatar", userDAO.getUser(userName).getImage());
             session.setAttribute("email", userDAO.getUser(userName).getEmail());
             session.setAttribute("name", userDAO.getUser(userName).getFullName());
+            session.setAttribute("u", userDAO.getUser(userName));
 //            response.getWriter().print(session.getAttribute("roleId"));
             response.getWriter().print(session.getAttribute("roleId").equals(2));
 

@@ -188,8 +188,8 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    
+
 
 <!-- Custom template | don't include it in your project! -->
 

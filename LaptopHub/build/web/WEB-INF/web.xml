@@ -140,6 +140,14 @@
         <servlet-name>CartProcessServlet</servlet-name>
         <servlet-class>laptophub.controller.web.cart.CartProcessServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Checkout</servlet-name>
+        <servlet-class>laptophub.controller.web.cart.Checkout</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PaymentServlet</servlet-name>
+        <servlet-class>laptophub.controller.web.payment.PaymentServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddAccountServlet</servlet-name>
         <url-pattern>/AddAccountServlet</url-pattern>
@@ -263,5 +271,13 @@
     <servlet-mapping>
         <servlet-name>CartProcessServlet</servlet-name>
         <url-pattern>/CartProcessServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Checkout</servlet-name>
+        <url-pattern>/Checkout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaymentServlet</servlet-name>
+        <url-pattern>/PaymentServlet</url-pattern>
     </servlet-mapping>
 </web-app>

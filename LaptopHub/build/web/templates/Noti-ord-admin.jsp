@@ -88,33 +88,25 @@
         <div class="body">
             <div class="container">
                 <div class="img-header">
-                    <img src="http://localhost:8080/LaptopHubWeb/images/logo/logo.png" width="100"/>
+                    <img src="../images/others/order.jpg" width="100"/>
                 </div>
-                <h1>Yêu cầu xác minh tài khoản LAPTOPHUB</h1>
+                <h1>THÔNG BÁO CÓ MỘT ĐƠN ĐẶT HÀNG MỚI TỪ LAPTOPHUB</h1>
                 <div class="inside-content">
                     <p class="body1">LAPTOPHUB</p>
-                    <p class="body1">Vui lòng xác thực yêu cầu Khôi phục mật khẩu của bạn</p>
-                    <p class="body2">Bạn đã gửi yêu cầu Khôi phục mật khẩu của một tài khoản:</p>
+                    <p class="body1">Có một đơn đặt hàng mới từ người dùng [USERNAME]</p>
+                    <p class="body2">Chi tiết</p>
                     <ul>
                         <li><span class="body2">Email: [EMAIL]</span></li>
-                        <li><span class="body2">Mã số: [ID]</span></li>
+                        <li><span class="body2">Tên tài khoản: [USERNAME]</span></li>
+                        <li><span class="body2">Tên tài khoản: [PHONE]</span></li>
                         <li><span class="body2">Vào lúc: [WHEN]</span></li>
+                        <li><span class="body2">Đơn giá: [TOTAL]</span></li>
+                        <li><span class="body2">Mã đơn hàng: [CODE]</span></li>
                     </ul>
                     <p class="body2">
-                        Để chắc chắn rằng bạn muốn khôi phục mật khẩu, hãy dùng mã sau đây (6 số) để tiếp tục với điều đó.
+                        Hãy xác nhận lại đơn hàng với người dùng. Để xác nhận đơn hàng và sẵn sàng khâu vận chuyển. Hãy thao tác xác nhận trên hệ thống admin!
                     </p>
-                    <div class="code-block">[CODE]</div>
-                    <p class="body1">Đấy không phải tôi!</p>
-                    <p class="body2">
-                        Nếu bạn không phải là người gửi yêu cầu này cho chúng tôi, vui lòng bỏ qua email này. Chúng tôi xin
-                        lỗi đã làm phiền bạn. Chúc bạn một ngày vui vẻ!
-                    </p>
-                    <p class="body1"></p>
-                    <p class="body2">
-                        chúng tôi chỉ có duy nhất một email để gửi thông báo cho bạn là 
-                        <a class="link" href="duyenvo31032004@gmail.com">duyenvo31032004@gmail.com</a>. Để tránh bị lừa đảo
-                        bởi những email giả, xin vui lòng xem kĩ địa chỉ email gửi đến.
-                    </p>
+                    <a href="http://localhost:8080/LaptopHub/">LAPTOPHUB</a>
                 </div>
             </div>
             <div class="footer">

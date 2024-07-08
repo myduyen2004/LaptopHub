@@ -27,16 +27,16 @@
     }
     .personal{
         width: 220px;
-        margin: 25px 35px;
+        margin: 25px 10px;
     }
     .personal a{
-        margin-left: 20px;
+        margin-left: 15px;
     }
-    
-/*    .personal .cart-icon{
-        display: inline;
-    }*/
-    
+
+    /*    .personal .cart-icon{
+            display: inline;
+        }*/
+
     .navbar-menu01 li:not(.logo, .personal){
         z-index: 1;
         position: relative;
@@ -128,7 +128,7 @@
         left: 920px;
         width: 200px;
     }
-    
+
     .quantity-cart{
         background-color: #fff;
         border: .125rem solid var(--brand-primary-color, #9c68df);
@@ -142,13 +142,13 @@
         bottom: 10px;
         text-align: center;
     }
-    
-    
+
+
 </style>
 <div class="navbar01">
     <%
         String name = (String)request.getSession().getAttribute("sessuser");
-        String size = CookieUtils.get(name+"cartSize", request);
+        String size = CookieUtils.get(name+"size", request);
     %>
     <ul class="navbar-menu01">
         <li><a href ="HomeServlet">TRANG CHỦ</a></li>
@@ -180,11 +180,20 @@
                 <a href="CartServlet?action=showcart">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
-                <div class="quantity-cart" style="display: inline">${sessionScope.size}</div>
+
             </div>
             <%if (session.getAttribute("sessuser") == null){%>
             <a href="login.jsp" class="dropbtn"><i class="fas fa-user"></i></a>
+
             <%}else{%>
+            <% 
+                Object sizeSession = session.getAttribute("size");
+                if (sizeSession != null) { 
+            %>
+            <div class="quantity-cart" style="display: inline">${sessionScope.size} </div>
+            <%}else{%>
+            <div class="quantity-cart" style="display: inline"><%=size%></div>
+            <%}%>
             <a href="#" class=""><i class="fas fa-user"></i></a>
             <a href="LogoutServlet"><i class="fa-solid fa-right-from-bracket"></i></a>
                 <%}%>

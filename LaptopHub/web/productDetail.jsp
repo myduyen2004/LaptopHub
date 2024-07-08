@@ -16,21 +16,21 @@
     <link rel="stylesheet" href="./css/productDetail.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<style>
-    pre{
-    font-family: "Times New Roman", Times, serif;
-    overflow-wrap: break-word;
-    padding: 20px;
-    white-space: pre-wrap; 
-    font-size: 15px
-    }
-</style>
+    <style>
+        pre{
+            font-family: "Times New Roman", Times, serif;
+            overflow-wrap: break-word;
+            padding: 20px;
+            white-space: pre-wrap;
+            font-size: 15px
+        }
+    </style>
 </head>
 <body class="prd-body">
-        <%@include file="/includes/header.jsp" %>
+    <%@include file="/includes/header.jsp" %>
     <div class="container">
         <section class="general-info">
-            
+
             <div class="left-side">
                 <picture class="show-bar">               
                     <c:forEach var="img" items="${product.getImageList()}">
@@ -52,107 +52,107 @@
                 </div>
             </div>
             <form action="CartServlet?id=${product.getProductId()}" method="POST">
-            <div class="right-side">
-                <div class="top-info">
-                    <div class="prd-name">
-                        <h3 class="name">${product.getProductName()}</h3>
+                <div class="right-side">
+                    <div class="top-info">
+                        <div class="prd-name">
+                            <h3 class="name">${product.getProductName()}</h3>
+                        </div>
+                        <div class="evaluate">
+                            <div class="starRate">
+                                <c:if test="${product.getStarRating()==0}">
+                                    <i class="fa fa-star "></i>
+                                    <i class="fa fa-star "></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </c:if>
+                                <c:if test="${product.getStarRating()==1}">
+                                    <i class="fa fa-star checked"></i>
+                                    <i class="fa fa-star "></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </c:if>
+                                <c:if test="${product.getStarRating()==2}">
+                                    <i class="fa fa-star checked"></i>
+                                    <i class="fa fa-star checked"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </c:if>
+                                <c:if test="${product.getStarRating()==3}">
+                                    <i class="fa fa-star checked"></i>
+                                    <i class="fa fa-star checked"></i>
+                                    <i class="fa fa-star checked"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </c:if>
+                                <c:if test="${product.getStarRating()==4}">
+                                    <i class="fa fa-star checked"></i>
+                                    <i class="fa fa-star checked"></i>
+                                    <i class="fa fa-star checked"></i>
+                                    <i class="fa fa-star checked"></i>
+                                    <i class="fa fa-star"></i>
+                                </c:if>
+                                <c:if test="${product.getStarRating()==5}">
+                                    <i class="fa fa-star checked"></i>
+                                    <i class="fa fa-star checked"></i>
+                                    <i class="fa fa-star checked"></i>
+                                    <i class="fa fa-star checked"></i>
+                                    <i class="fa fa-star checked"></i>
+                                </c:if>
+                            </div>
+                            <div class="sold">
+                                <p>Đã bán ${product.getQuantitySold()}</p>
+                            </div>
+                        </div>  
+                        <hr>
                     </div>
-                    <div class="evaluate">
-                        <div class="starRate">
-                            <c:if test="${product.getStarRating()==0}">
-                                <i class="fa fa-star "></i>
-                                <i class="fa fa-star "></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </c:if>
-                            <c:if test="${product.getStarRating()==1}">
-                                <i class="fa fa-star checked"></i>
-                                <i class="fa fa-star "></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </c:if>
-                            <c:if test="${product.getStarRating()==2}">
-                                <i class="fa fa-star checked"></i>
-                                <i class="fa fa-star checked"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </c:if>
-                            <c:if test="${product.getStarRating()==3}">
-                                <i class="fa fa-star checked"></i>
-                                <i class="fa fa-star checked"></i>
-                                <i class="fa fa-star checked"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </c:if>
-                            <c:if test="${product.getStarRating()==4}">
-                                <i class="fa fa-star checked"></i>
-                                <i class="fa fa-star checked"></i>
-                                <i class="fa fa-star checked"></i>
-                                <i class="fa fa-star checked"></i>
-                                <i class="fa fa-star"></i>
-                            </c:if>
-                            <c:if test="${product.getStarRating()==5}">
-                                <i class="fa fa-star checked"></i>
-                                <i class="fa fa-star checked"></i>
-                                <i class="fa fa-star checked"></i>
-                                <i class="fa fa-star checked"></i>
-                                <i class="fa fa-star checked"></i>
-                            </c:if>
-                        </div>
-                        <div class="sold">
-                            <p>Đã bán ${product.getQuantitySold()}</p>
-                        </div>
-                    </div>  
-                    <hr>
-                </div>
-                
-                <div class="mid-info">
-                    <div class="price">
-                        <p>Siêu ưu đãi: </p>
+
+                    <div class="mid-info">
+                        <div class="price">
+                            <p>Siêu ưu đãi: </p>
                             <h6 class="sale"> ${product.getPricePerUnit()}VND</h6>
                             <h4 class="price">${product.getPricePerUnitAfterDiscount()}VND</h4>
+                        </div>
+                    </div>
+                    <div class="quantity">
+                        <p>Số lượng: <i class="fa-solid fa-minus" onclick="decreaseQuantity()"></i><input type="text" name="quantityOrder" id="quantityInput" value="1"><i class="fa-solid fa-plus" onclick="increaseQuantity()"></i></p>
+                    </div>
+
+                    <div class="buy-bar">
+                        <input type="submit" value="Thêm Vào Giỏ Hàng" class="button"/>
+                        <input type="submit" value="Mua Ngay" onclick="window.location.href = '#'; return false;" class="button"/>
                     </div>
                 </div>
-                <div class="quantity">
-                    <p>Số lượng: <i class="fa-solid fa-minus" onclick="decreaseQuantity()"></i><input type="text" name="quantityOrder" id="quantityInput" value="1"><i class="fa-solid fa-plus" onclick="increaseQuantity()"></i></p>
-                </div>
-                            
-                <div class="buy-bar">
-                    <input type="submit" value="Thêm Vào Giỏ Hàng" class="button"/>
-                    <input type="submit" value="Mua Ngay" onclick="window.location.href='#'; return false;" class="button"/>
-                </div>
-            </div>
-                    </form>
+            </form>
         </section>
     </div>
-                </br>
-                <hr><!-- comment -->
-                </br>             
+    </br>
+    <hr><!-- comment -->
+    </br>             
     <div class="container">
         <div class="detail-info">
             <pre>${product.getDescription()}</pre>
         </div>
     </div>
-        <script src="./js/productDetail.js">  
-            
-        </script>
-        
-        <script>
-            function addToCart() {
-                // Lấy giá trị của trường "quantityOrder"
-                var quantityValue = document.getElementById("quantityInput").value;
+    <script src="./js/productDetail.js">
 
-                // Truyền giá trị vào href
-                var productId = "${product.getProductId()}"; // Thay thế bằng mã sản phẩm thực tế
-                var cartUrl = "CartServlet?productId=" + productId+"&quantity="+quantityValue;
+    </script>
 
-                // Chuyển hướng đến trang giỏ hàng
-                window.location.href = cartUrl;
-            }
-        </script>
+    <script>
+        function addToCart() {
+            // Lấy giá trị của trường "quantityOrder"
+            var quantityValue = document.getElementById("quantityInput").value;
+
+            // Truyền giá trị vào href
+            var productId = "${product.getProductId()}"; // Thay thế bằng mã sản phẩm thực tế
+            var cartUrl = "CartServlet?productId=" + productId + "&quantity=" + quantityValue;
+
+            // Chuyển hướng đến trang giỏ hàng
+            window.location.href = cartUrl;
+        }
+    </script>
 </body>
 
 <%@include file="/includes/footer.jsp" %>
