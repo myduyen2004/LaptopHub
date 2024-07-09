@@ -1,4 +1,4 @@
-﻿CREATE DATABASE LaptopHub;
+CREATE DATABASE LaptopHub;
 GO
 
 USE LaptopHub;
@@ -1822,92 +1822,6 @@ VALUES
     (33, './images/products/prd33/back.jpg', N'Mặt sau');
 
 
-
-INSERT INTO [dbo].[Transaction](walletId, amount, createdDate, transactionType, status) VALUES
-(12, 27490000+22990000, '2024-06-01', N'Thanh toán online', 1)
-INSERT INTO [dbo].[Order](date, userName, totalMoney, status, transactionId) VALUES 
-('2024-06-01', 'bao', 27490000+22990000, 1, 7)
-INSERT INTO [dbo].[OrderDetails] (orderId, productId, quantity, unitPrice, discount) VALUES 
-(11, 1, 1, 27490000, 0);
-INSERT INTO [dbo].[OrderDetails] (orderId, productId, quantity, unitPrice, discount) VALUES 
-(11, 2, 1, 22990000, 0)
-
-
-INSERT INTO [dbo].[Transaction](walletId, amount, createdDate, transactionType, status) VALUES
-(12, 27490000+22990000, '2024-06-01', N'Thanh toán online', 1)
-INSERT INTO [dbo].[Order](date, userName, totalMoney, status, transactionId) VALUES 
-('2024-06-01', 'bao', 27490000+22990000, 1, 8)
-INSERT INTO [dbo].[OrderDetails] (orderId, productId, quantity, unitPrice, discount) VALUES 
-(12, 1, 1, 27490000, 0);
-INSERT INTO [dbo].[OrderDetails] (orderId, productId, quantity, unitPrice, discount) VALUES 
-(12, 2, 1, 22990000, 0)
-
-INSERT INTO [dbo].[Transaction](walletId, amount, createdDate, transactionType, status) VALUES
-(12, 27490000+22990000, '2024-06-01', N'Thanh toán online', 1)
-INSERT INTO [dbo].[Order](date, userName, totalMoney, status, transactionId) VALUES 
-('2024-06-25', 'bao', 27490000+22990000, 1, 9 )
-INSERT INTO [dbo].[OrderDetails] (orderId, productId, quantity, unitPrice, discount) VALUES 
-(13, 1, 1, 27490000, 0);
-INSERT INTO [dbo].[OrderDetails] (orderId, productId, quantity, unitPrice, discount) VALUES 
-(13, 2, 1, 22990000, 0)
-
-
-INSERT INTO [dbo].[Transaction](walletId, amount, createdDate, transactionType, status) VALUES
-(11, 28990000+22990000, '2024-05-01', N'Thanh toán online', 1)
-INSERT INTO [dbo].[Order](date, userName, totalMoney, status, transactionId) VALUES 
-('2024-05-01', 'dung', 28990000+22990000, 1, 10 )
-INSERT INTO [dbo].[OrderDetails] (orderId, productId, quantity, unitPrice, discount) VALUES 
-(14, 3, 1, 28990000, 0);
-INSERT INTO [dbo].[OrderDetails] (orderId, productId, quantity, unitPrice, discount) VALUES 
-(14, 2, 1, 22990000, 0)
-
-INSERT INTO [dbo].[Transaction](walletId, amount, createdDate, transactionType, status) VALUES
-(1, 28990000+23390000, '2024-04-01', N'Thanh toán online', 1)
-INSERT INTO [dbo].[Order](date, userName, totalMoney, status, transactionId) VALUES 
-('2024-04-01', 'anh', 28990000+23390000, 1, 11 )
-INSERT INTO [dbo].[OrderDetails] (orderId, productId, quantity, unitPrice, discount) VALUES 
-(15, 3, 1, 28990000, 0);
-INSERT INTO [dbo].[OrderDetails] (orderId, productId, quantity, unitPrice, discount) VALUES 
-(15, 4, 1, 23390000, 0)
-
-INSERT INTO [dbo].[Transaction](walletId, amount, createdDate, transactionType, status) VALUES
-(1, 28990000+23390000, '2024-04-05', N'Thanh toán online', 1)
-INSERT INTO [dbo].[Order](date, userName, totalMoney, status, transactionId) VALUES 
-('2024-04-05', 'anh', 28990000+23390000, 1, 12 )
-INSERT INTO [dbo].[OrderDetails] (orderId, productId, quantity, unitPrice, discount) VALUES 
-(16, 3, 1, 28990000, 0);
-INSERT INTO [dbo].[OrderDetails] (orderId, productId, quantity, unitPrice, discount) VALUES 
-(16, 4, 1, 23390000, 0)
-
-
-GO
-DELETE FROM [dbo].[OrderDetails] WHERE discount = 0;
-DELETE FROM [dbo].[Order] WHERE transactionId = 1;
-DELETE FROM [dbo].[Transaction] WHERE status = 'TRUE';
-
 UPDATE [dbo].[User]
 SET image = './images/avatar/default.jpg'
 WHERE status = 'True';
-
-INSERT INTO [dbo].[Order](date, userName, totalMoney, status, transactionId) VALUES 
-('2024-02-22', 'anhh', 34490000+2990000, 1, 1 );
-INSERT INTO [dbo].[OrderDetails] (orderId, productId, quantity, unitPrice, discount) VALUES 
-(5, 4, 1, 23390000, 0);
-INSERT INTO [dbo].[OrderDetails] (orderId, productId, quantity, unitPrice, discount) VALUES 
-(5, 2, 1, 22990000, 0);
-INSERT INTO [dbo].[Transaction](walletId, amount, createdDate, transactionType, status) VALUES
-(14, 23390000+22990000, '2024-02-25', N'Thanh toán online', 1);
-
-INSERT INTO [dbo].[Order](date, userName, totalMoney, status, transactionId) VALUES 
-('2024-01-10', 'tu', 2990000, 1, 1 );
-INSERT INTO [dbo].[Transaction](walletId, amount, createdDate, transactionType, status) VALUES
-(23, 23390000, '2024-03-20', N'Thanh toán online', 1);
-INSERT INTO [dbo].[OrderDetails] (orderId, productId, quantity, unitPrice, discount) VALUES 
-(11, 4, 1, 23390000, 0);
-
-INSERT INTO [dbo].[Order](date, userName, totalMoney, status, transactionId) VALUES 
-('2024-03-18', 'vu', 34490000, 1, 1 );
-INSERT INTO [dbo].[Transaction](walletId, amount, createdDate, transactionType, status) VALUES
-(4, 23390000+22990000, '2024-03-20', N'Thanh toán online', 1);
-INSERT INTO [dbo].[OrderDetails] (orderId, productId, quantity, unitPrice, discount) VALUES 
-(6, 3, 1, 28990000, 0);
