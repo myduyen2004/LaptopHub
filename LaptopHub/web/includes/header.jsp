@@ -170,7 +170,7 @@
         Object roleId = session.getAttribute("roleId");
             if (roleId != null && roleId.equals(2)) { 
             %>
-            <a href="DashboardServlet"><i class="fa-solid fa-list-check"></i></a>
+            <a href="./admin"><i class="fa-solid fa-list-check"></i></a>
                 <% 
                     } 
                 %>
