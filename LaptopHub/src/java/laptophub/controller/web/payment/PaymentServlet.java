@@ -9,6 +9,7 @@ import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -44,6 +45,8 @@ import laptophub.utils.Gmail;
  *
  * @author admin
  */
+@WebServlet(name = "PaymentServlet", urlPatterns = {"/payment"})
+
 public class PaymentServlet extends HttpServlet {
 
     /**

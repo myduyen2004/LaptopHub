@@ -25,7 +25,7 @@ public class ImageHandler {
 
     public ArrayList<ImageProduct> productImageUploadHandle(Collection<Part> parts, int id) throws IOException {
         String url = null;
-        String baseUploadPath = "D:/Project/LaptopHubWeb/web/images/products/";
+        String baseUploadPath = "D:/Final PRJ/LaptopHub/web/images/products/";
         String uniqueFolderName = "prd" + Integer.toString(id);
         File uploadDir = new File(baseUploadPath + uniqueFolderName);
         if (!uploadDir.exists()) {

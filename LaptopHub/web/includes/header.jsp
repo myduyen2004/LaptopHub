@@ -119,7 +119,7 @@
         left: 0;
     }
     .navbar-menu01 li:nth-child(2):hover~span{
-        left: 400px;
+        left: 410px;
         width: 210px;
         ;
     }
@@ -151,18 +151,18 @@
         String size = CookieUtils.get(name+"size", request);
     %>
     <ul class="navbar-menu01">
-        <li><a href ="HomeServlet">TRANG CHỦ</a></li>
+        <li><a href ="./home">TRANG CHỦ</a></li>
         <li class="dropdown">
             <a href="" class="dropbtn">PHÂN LOẠI</a>
             <div class="dropdown-content">
-                <a href="HomeServlet?action=Laptop">Laptop</a>
-                <a href="HomeServlet?action=Tablet">Máy tính bảng</a>
-                <a href="HomeServlet?action=Screen">Màn hình</a>
-                <a href="HomeServlet?action=PC">PC</a>
+                <a href="./home?action=Laptop">Laptop</a>
+                <a href="./home?action=Tablet">Máy tính bảng</a>
+                <a href="./home?action=Screen">Màn hình</a>
+                <a href="./home?action=PC">PC</a>
             </div>
         </li>
         <li class="logo">
-            <a href="HomeServlet"><img src="http://localhost:8080/LaptopHubWeb/images/logo/logo.png" alt="logo"/></a>
+            <a href="./home"><img src="./images/logo/logo.png" alt="logo"/></a>
         </li>
         <li><a href="aboutUs.jsp">VỀ CHÚNG TÔI</a></li>
         <li class="personal">
@@ -177,7 +177,7 @@
 
             <a href="#"><i class="fas fa-bell"></i></a>
             <div class="cart-icon" style="display: inline"> 
-                <a href="CartServlet?action=showcart">
+                <a href="./cart?cmd=show&action=showcart">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
 
@@ -194,8 +194,8 @@
             <%}else{%>
             <div class="quantity-cart" style="display: inline"><%=size%></div>
             <%}%>
-            <a href="#" class=""><i class="fas fa-user"></i></a>
-            <a href="LogoutServlet"><i class="fa-solid fa-right-from-bracket"></i></a>
+            <a href="./profile"><i class="fas fa-user"></i></a>
+            <a href="./logout"><i class="fa-solid fa-right-from-bracket"></i></a>
                 <%}%>
 
 

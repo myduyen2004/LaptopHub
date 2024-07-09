@@ -48,8 +48,8 @@ public class UserDAO {
                 String address = rs.getString(8);
                 String phone = rs.getString(9);
                 Boolean status = rs.getBoolean(10);
-                User user = new User(userName, userId, fullName, password, roleID, image, birthday, address, phone,
-                        status);
+                String email = rs.getString("Email");
+                User user = new User(userName, userId, fullName, password, roleID, image, birthday, address, phone,status,email);
                 userList.add(user);
 
             }
@@ -66,7 +66,7 @@ public class UserDAO {
         User temp = null;
         for (User u : new UserDAO().getAllUSer()) {
             if (u.getUserName().equalsIgnoreCase(user.getUserName())
-                    && u.getPassword().equals(user.getPassword())) {
+                    && u.getPassword().equals(user.getPassword()) && u.isStatus()) {
                 temp = user;
                 break;
             }
@@ -195,10 +195,7 @@ public class UserDAO {
         return top5Cus;
 
     }
-    
-    
-    
-    
+
     public User getUser(String userNameIn) {
         DBConnection db = DBConnection.getInstance();
         String sql = "SELECT * FROM [dbo].[User] WHERE userName = ?";
@@ -219,7 +216,8 @@ public class UserDAO {
                 String address = rs.getString(8);
                 String phone = rs.getString(9);
                 Boolean status = rs.getBoolean(10);
-                user = new User(userName, userId, fullName, password, roleID, image, birthday, address, phone, true);
+                String email = rs.getString("Email");
+                user = new User(userName, userId, fullName, password, roleID, image, birthday, address, phone, status, email);
             }
             rs.close();
             statement.close();
@@ -242,6 +240,7 @@ public class UserDAO {
                 + "      ,[birthday]\n"
                 + "      ,[address]\n"
                 + "      ,[phone]\n"
+                + "      , [Email]\n"
                 + "      ,[status]\n"
                 + "  FROM [dbo].[User] where userId=?";
         try {
@@ -250,8 +249,8 @@ public class UserDAO {
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
             while(rs.next()){
- u = new User(rs.getString("userName"), rs.getInt("userId"), rs.getString("fullName"),rs.getString("password"),rs.getInt("roleId"), rs.getString("image"),rs.getString("birthday"), rs.getString("address"), rs.getString("phone"), rs.getBoolean("status"));
-  rs.close();
+            u = new User(rs.getString("userName"), rs.getInt("userId"), rs.getString("fullName"),rs.getString("password"),rs.getInt("roleId"), rs.getString("image"),rs.getString("birthday"), rs.getString("address"), rs.getString("phone"), rs.getBoolean("status"), rs.getString("Email"));
+            rs.close();
             st.close();
             con.close();
                 return u; 
@@ -327,7 +326,8 @@ public class UserDAO {
 "      ,[address] = ?\n" +
 "      ,[phone] =?\n" +
 "      ,[status] = ?\n" +
-" WHERE userId=? ";
+"      ,[Email] = ?\n" +
+" WHERE userName=? ";
         
         try {
             Connection con = db.openConnection();
@@ -341,7 +341,8 @@ public class UserDAO {
             st.setString(6,u.getAddress());
             st.setString(7,u.getPhone());
             st.setBoolean(8, u.isStatus());
-            st.setInt(9, u.getUserId()); 
+            st.setString(9, u.getEmail());
+            st.setString(10, u.getUserName()); 
             
             st.execute();
             st.close();
@@ -350,8 +351,34 @@ public class UserDAO {
             System.out.println(e);
         }
     }
-
-   
+    
+    public void updateBasicInfoUser(String name, String fullName, String dob, String address, String phone, String email){
+        DBConnection db = DBConnection.getInstance(); 
+        String sql = "UPDATE [dbo].[User]\n" +
+        "   SET" +
+        "      [fullName] = ?\n" +
+        "      ,[birthday] = ?\n" +
+        "      ,[address] = ?\n" +
+        "      ,[phone] =?\n" +
+        "      ,[Email] = ?\n" +
+        " WHERE userName=? ";
+        
+        try {
+            Connection con = db.openConnection();
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1,fullName);
+            st.setString(2,dob);
+            st.setString(3,address);
+            st.setString(4,phone);
+            st.setString(5, email);
+            st.setString(6,name);
+            st.execute();
+            st.close();
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
     public boolean isExist(String email) throws SQLException {
         String sql = "SELECT * FROM [dbo].[User] WHERE Email=?";
@@ -395,7 +422,7 @@ public class UserDAO {
                 String address = rs.getString(8);
                 String phone = rs.getString(9);
                 Boolean status = rs.getBoolean(10);
-                user = new User(userName, userId, fullName, password, roleID, image, birthday, address, phone, true);                
+                user = new User(userName, userId, fullName, password, roleID, image, birthday, address, phone, status, email);                
             }
             rs.close();
             statement.close();
@@ -422,11 +449,97 @@ public class UserDAO {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE,null, ex);
         }
     }
+//    public static void updateUser(User u){
+//       DBConnection db = DBConnection.getInstance(); 
+//        String sql = "UPDATE [dbo].[User]\n" +
+//"   SET" +
+//"      [fullName] = ?\n" +
+//
+//
+//
+// "      ,[userName] = ?\n" +
+//
+//"      ,[password] = ?\n" +
+//"      ,[roleId] = ?\n" +
+//"      ,[image] = ?\n" +
+//"      ,[birthday] = ?\n" +
+//"      ,[address] = ?\n" +
+//"      ,[phone] =?\n" +
+//"      ,[status] = ?\n" +
+//
+//
+//
+//"       ,[email] = ?\n" +          
+//
+//
+//
+//" WHERE userId=? ";
+//        
+//        try {
+//            Connection con = db.openConnection();
+//            PreparedStatement st = con.prepareStatement(sql);
+//            
+//            st.setString(1,u.getFullName());
+//
+//            st.setString(2,u.getUserName());
+//            st.setString(3,u.getPassword());
+//            st.setInt(4,u.getRoleId());
+//            st.setString(5,u.getImage());
+//            st.setString(6,u.getBirthdayString(u.getBirthday()));
+//            st.setString(7,u.getAddress());
+//            st.setString(8,u.getPhone());
+//            st.setBoolean(9, u.isStatus());
+//            st.setString(10, u.getEmail());
+//            st.setInt(11, u.getUserId());  
+//
+//            st.execute();
+//            st.close();
+//            con.close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//    }
     
+    public void deleteWallet(String userName){
+                String sql = "DELETE FROM [dbo].[Wallet]\n" +
+"      WHERE userName=?";
+        DBConnection db = DBConnection.getInstance();
+        try {
+            Connection con = db.openConnection();
+            PreparedStatement st = con.prepareStatement(sql);
+           st.setString(1, userName);
+           st.executeUpdate();
+           st.close();
+            con.close();
+        } catch (SQLException e) {
+             System.out.println(e);
+        } catch (Exception ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void addWallet(Wallet w){
+        DBConnection db = DBConnection.getInstance();
+        String sql = "INSERT INTO [dbo].[Wallet] userName, balance VALUES (?,?)";
+        
+        try {
+             Connection con = db.openConnection();
+            PreparedStatement st = con.prepareStatement(sql); 
+            st.setString(1, w.getUserName().getUserName());
+            st.setInt(2, w.getBalance());
+            st.executeUpdate();
+            st.close();
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    
+}
     public static void main(String[] args) throws SQLException {
         UserDAO userDao = new UserDAO();
-        
-        userDao.changePassword("1212", "vtmyduyen3103@gmail.com");
+        User u = new User("hung", "Vũ Hưng", "password123", 1, "./images/avatar/default.jpg", "2004-02-02", "Nghệ An", "0987654321", true, null);
+        userDao.updateUser(u);
+//        userDao.deleteWallet("anh");
+//        userDao.deleteUser(1);
     }
     
     

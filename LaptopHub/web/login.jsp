@@ -74,10 +74,9 @@
         %>
 
         <div class="row content--">
-
             <div class="login">
                 <p class="h3">Đăng nhập</p>
-                <form action="LoginServlet" method="POST">
+                <form action="./login" method="POST">
                     <%=request.getAttribute("msg")!=null?request.getAttribute("msg") : ""%>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Tên đăng nhập</label>

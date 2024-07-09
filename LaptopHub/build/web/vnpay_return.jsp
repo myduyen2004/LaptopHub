@@ -114,8 +114,7 @@
                 </div> 
 
                 <br><br>
-                <a href="./HomeServlet" class="return" >Quay về trang chủ</a>
-
+                <a href="./home" class="return" >Quay về trang chủ</a>
             </div>
             <p>
                 &nbsp;

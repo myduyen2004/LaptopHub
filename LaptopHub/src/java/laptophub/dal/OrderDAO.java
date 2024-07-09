@@ -46,12 +46,12 @@ public class OrderDAO {
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 int orderId = Integer.parseInt(rs.getString(1));
-                String userName = rs.getNString(2);
+                Date date = rs.getDate(2);
+                String userName = rs.getNString(3);
                 User user = dao.getUser(userName);
-                int totalMoney = Integer.parseInt(rs.getString(3));
-                boolean status = rs.getBoolean(4);
-                String payment = rs.getString(5);
-                Date date = rs.getDate(6);
+                int totalMoney = Integer.parseInt(rs.getString(4));
+                boolean status = rs.getBoolean(5);
+                String payment = rs.getString(6);
                 String time = rs.getString(7);
                 String address = rs.getString(8);
                 String ward = rs.getString(9);
@@ -214,8 +214,8 @@ public class OrderDAO {
         try {
             Connection con = db.openConnection();
             PreparedStatement statement = con.prepareStatement(sql);
-            System.out.println(time);
-            System.out.println(new java.sql.Date(date.getTime()));
+//            System.out.println(time);
+//            System.out.println(new java.sql.Date(date.getTime()));
             statement.setDate(1, new java.sql.Date(date.getTime()));
             statement.setString(2, time);
             statement.setNString(3, user.getUserName());
@@ -223,10 +223,10 @@ public class OrderDAO {
             System.out.println(statement);
             if (rs.next()) {
                 int orderId = Integer.parseInt(rs.getString(1));
-                String userName = rs.getNString(2);
-                int totalMoney = Integer.parseInt(rs.getString(3));
-                boolean status = rs.getBoolean(4);
-                String payment = rs.getString(5);
+                String userName = rs.getNString(3);
+                int totalMoney = Integer.parseInt(rs.getString(4));
+                boolean status = rs.getBoolean(5);
+                String payment = rs.getString(6);
                 System.out.println(orderId + userName + totalMoney + status + payment);
                 user = dao.getUser(userName);
                 String address = rs.getString(8);
@@ -258,6 +258,7 @@ public class OrderDAO {
             Connection con = db.openConnection();
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setInt(1, dao.getOrder(userDao.getUser(user.getUserName()), date, time).getOrderId());
+//            System.out.println(dao.getOrder(userDao.getUser(user.getUserName()), date, time).getOrderId());
             statement.setInt(2, item.getProduct().getProductId());
             statement.setInt(3, item.getQuantity());
             statement.setInt(4, item.getPriceAfter());
@@ -339,13 +340,12 @@ public class OrderDAO {
             System.out.println(statement);
             if (rs.next()) {
                 int orderId = Integer.parseInt(rs.getString(1));
-                String userName = rs.getNString(2);
-                int totalMoney = Integer.parseInt(rs.getString(3));
-                boolean status = rs.getBoolean(4);
-                String payment = rs.getString(5);
-                System.out.println(orderId + userName + totalMoney + status + payment);
+                Date date = rs.getDate(2);
+                String userName = rs.getNString(3);
                 User user = dao.getUser(userName);
-                Date date = rs.getDate(6);
+                int totalMoney = Integer.parseInt(rs.getString(4));
+                boolean status = rs.getBoolean(5);
+                String payment = rs.getString(6);
                 String time = rs.getString(7);
                 String address = rs.getString(8);
                 String ward = rs.getString(9);
@@ -353,6 +353,7 @@ public class OrderDAO {
                 String district = rs.getString(11);
                 String phone = rs.getString(12);
                 o = new Order(orderId, user, totalMoney, status, payment, date, time, address, ward, province, district, phone);
+                
 
             }
             rs.close();
@@ -363,38 +364,6 @@ public class OrderDAO {
         }
         return o;
     }
-
-//    public List<OrderRequest.Product> getOrderDetail(int orderId){
-//        List<OrderRequest.Product> list = new ArrayList<>();
-//        String sql = "SELECT * FROM [dbo].[OrderDetails] WHERE orderId = ?";
-//        DBConnection db = DBConnection.getInstance();
-//        ProductDAO dao = new ProductDAO();
-//        try{
-//            Connection con = db.openConnection();
-//            PreparedStatement statement = con.prepareStatement(sql);
-//            statement.setInt(1, orderId);
-//            System.out.println(statement);
-//            ResultSet rs = statement.executeQuery();
-//            while(rs.next()){
-//                System.out.println(rs.next());
-//                int productId = Integer.parseInt(rs.getString(2));
-//                String productName = dao.getProduct(productId).getProductName();
-//                int quantity = Integer.parseInt(rs.getString(3));
-//                int unitPrice = Integer.parseInt(rs.getString(4));
-//                int discount = Integer.parseInt(rs.getString(5));
-//                OrderRequest.Product p = new OrderRequest.Product(productName, quantity, productId, unitPrice, discount);
-//                list.add(p);
-//                System.out.println(p);
-//                System.out.println(rs.getString(2));
-//            }
-//            System.out.println(rs.next());
-//            System.out.println(rs.getString(1));
-//        }catch(Exception ex){
-//            System.out.println(ex.getMessage());
-////            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return list;
-//    }
     public List<OrderRequest.Product> getOrderDetail(int orderId) {
         List<OrderRequest.Product> list = new ArrayList<>();
         String sql = "SELECT * FROM [dbo].[OrderDetails] WHERE orderId = ?";
@@ -473,7 +442,7 @@ public class OrderDAO {
     }
 
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) throws ParseException, SQLException {
         User user = new User("anhh", "password123");
         OrderDAO dao = new OrderDAO();
         DateTimeUtils u = new DateTimeUtils();
@@ -481,7 +450,14 @@ public class OrderDAO {
         String time = u.getTime();
 //        System.out.println(dao.getOrderById(2082));
 //        dao.deleteOrderDetails(2081);
-        dao.confirmOrderStatus(2084);
+//        dao.confirmOrderStatus(2084);
+
+//        System.out.println(dao.getAllOrder());
+//Product p = new Product(1, 1, time, 1, 1, true, time, date, 0, true);
+//CartItem item = new CartItem(p, 1, 1);
+//    dao.addOrderDetail(user, item, date, time);
+
+        System.out.println(dao.getOrder(user, date, time));
     }
 
 }

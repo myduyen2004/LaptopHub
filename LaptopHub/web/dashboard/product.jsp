@@ -112,7 +112,7 @@
                             <div class="d-flex align-items-center">
                                 <script type="text/javascript">
                                     function redirectToPage() {
-                                        window.location.href = './dashboard/add-product-form.jsp';
+                                        window.location.href = './manageproduct?command=ADD';
                                     }
                                 </script>
                                 <button
@@ -146,15 +146,15 @@
                                     </thead>
                                     <tbody>
                                         <c:forEach var= "product" items= "${productList}" >
-                                            <c:url var="tempLink" value="ProductManagement">
+                                            <c:url var="tempLink" value="./manageproduct">
                                                 <c:param name="command" value="LOAD"></c:param>
                                                 <c:param name="productId" value="${product.getProductId()}"></c:param>
                                             </c:url>
-                                            <c:url var="deleteLink" value="ProductManagement">
+                                            <c:url var="deleteLink" value="./manageproduct">
                                                 <c:param name="command" value="DELETE"></c:param>
                                                 <c:param name="productId" value="${product.getProductId()}"></c:param>
                                             </c:url>
-                                            <c:url var="detailLink" value="ProductManagement">
+                                            <c:url var="detailLink" value="./manageproduct">
                                                 <c:param name="command" value="DETAIL"></c:param>
                                                 <c:param name="productId" value="${product.getProductId()}"></c:param>
                                             </c:url>

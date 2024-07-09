@@ -150,15 +150,15 @@
                                     </thead>
                                     <tbody>
                                         <c:forEach var= "order" items= "${orderList}" >
-                                            <c:url var= "confirm" value="ManageOrder">
+                                            <c:url var= "confirm" value="./manageord">
                                                 <c:param name="command" value="LOAD"></c:param>
                                                 <c:param name="orderId" value="${order.getOrderId()}"></c:param>
                                             </c:url>
-                                            <c:url var= "cancel" value="ManageOrder">
+                                            <c:url var= "cancel" value="./manageord">
                                                 <c:param name="command" value="CANCEL"></c:param>
                                                 <c:param name="orderId" value="${order.getOrderId()}"></c:param>
                                             </c:url>
-                                            <c:url var= "delete" value="ManageOrder">
+                                            <c:url var= "delete" value="./manageord">
                                                 <c:param name="command" value="DELETE"></c:param>
                                                 <c:param name="orderId" value="${order.getOrderId()}"></c:param>
                                             </c:url>

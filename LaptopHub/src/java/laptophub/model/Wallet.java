@@ -27,6 +27,12 @@ public class Wallet {
         this.balance = balance;
     }
 
+    public Wallet(User userName, int balance) {
+        this.userName = userName;
+        this.balance = balance;
+    }
+    
+
     public int getWalletId() {
         return walletId;
     }

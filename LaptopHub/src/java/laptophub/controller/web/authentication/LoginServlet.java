@@ -7,6 +7,7 @@ package laptophub.controller.web.authentication;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -19,6 +20,8 @@ import laptophub.utils.CookieUtils;
  *
  * @author admin
  */
+@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
+
 public class LoginServlet extends HttpServlet {
 
     /**
@@ -61,7 +64,7 @@ public class LoginServlet extends HttpServlet {
     throws ServletException, IOException {
        String username = CookieUtils.get("cookuser", request);
        if(username!=null && username.equals("")){
-           request.getRequestDispatcher("HomeServlet").forward(request, response);
+           request.getRequestDispatcher("./home").forward(request, response);
            return;
        }
        request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -104,8 +107,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("u", userDAO.getUser(userName));
 //            response.getWriter().print(session.getAttribute("roleId"));
             response.getWriter().print(session.getAttribute("roleId").equals(2));
-
-            response.sendRedirect(request.getContextPath() + "/HomeServlet");
+            response.sendRedirect(request.getContextPath() + "/home");
         } else {
             request.setAttribute("msg", "Authentication failure");
             request.getRequestDispatcher("login.jsp").forward(request, response);

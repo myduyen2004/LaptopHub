@@ -80,7 +80,7 @@
     </head>
     <body>
         <%@include file="../includes/header.jsp" %>
-        <form action="ManageOrder" method="GET" enctype="multipart/form-data">
+        <form action="./manageord" method="GET" enctype="multipart/form-data">
             <input type="hidden" name="command" value="CONFIRM">
             <input type="hidden" name="orderId"
                    value="${THE_ORDER.getOrderId()}">
@@ -128,9 +128,7 @@
                                 <br><br>
                                 
                                 <table>
-                                    
                                     <tr>
-                                        
                                         <td><h3>Thành Tiền</h3></td>
                                         <td><h3 id="grandTotal">${THE_ORDER.getTotalMoneyString()}</h3></td>
                                     </tr>

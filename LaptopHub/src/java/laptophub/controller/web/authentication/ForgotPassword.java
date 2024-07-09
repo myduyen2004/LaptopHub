@@ -7,6 +7,7 @@ package laptophub.controller.web.authentication;
 
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -29,6 +30,8 @@ import laptophub.utils.RandomGenerator;
  *
  * @author admin
  */
+@WebServlet(name = "ForgotPassword", urlPatterns = {"/forgotpass"})
+
 public class ForgotPassword extends HttpServlet {
    
     /** 

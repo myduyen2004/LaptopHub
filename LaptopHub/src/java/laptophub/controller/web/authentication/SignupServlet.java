@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,11 +17,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import laptophub.dal.UserDAO;
 import laptophub.model.User;
+import laptophub.model.Wallet;
 
 /**
  *
  * @author admin
  */
+@WebServlet(name = "SignupServlet", urlPatterns = {"/signup"})
+
 public class SignupServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UserDAO userDAO;
@@ -67,7 +71,7 @@ public class SignupServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("signup.jsp").forward(request, response);
     }
 
     /**
@@ -109,7 +113,10 @@ public class SignupServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new ServletException(e);
         }
-         request.getRequestDispatcher("AddAccountServlet").forward(request, response);
+        User u = new User(userName, fullName, password, roleId, email, birthdayStr, address, phone, status, email);
+        Wallet w = new Wallet(u, 0);
+        userDAO.addWallet(w);
+         request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     /**

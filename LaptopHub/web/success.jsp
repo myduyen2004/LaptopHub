@@ -84,9 +84,9 @@
                 <p>${msg}</p>
                 <p class="amount">Tổng tiền: ${sessionScope.cart.getTotalMoney()}</p>
                 <p>Mã đơn hàng trên hệ thống: <strong>${id}</strong></p>
-                <a href="./HomeServlet" class="return" >Quay về trang chủ</a>
+                <a href="./home" class="return" >Quay về trang chủ</a>
                 <br><br><br>
-                <a href="./PaymentServlet" class="add">Nạp thêm tiền vào ví</a>
+                <a href="./payment" class="add">Nạp thêm tiền vào ví</a>
             </div>
             <div class="person_01">
                 <img src="images/others/order.jpg" alt="Person Image">

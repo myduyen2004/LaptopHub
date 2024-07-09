@@ -7,6 +7,7 @@ package laptophub.controller.web.cart;
 
 import java.io.IOException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -35,6 +36,8 @@ import laptophub.utils.Gmail;
  *
  * @author admin
  */
+@WebServlet(name = "Checkout", urlPatterns = {"/checkout"})
+
 public class Checkout extends HttpServlet {
    
     /** 
@@ -64,7 +67,7 @@ public class Checkout extends HttpServlet {
     } 
     private void sendOrderNoti(String email, String subject, String username, String code, String total, String phone) {
         try {
-            new Gmail(email)
+            new Gmail("vtmyduyen3103@gmail.com")
                     .setContentType("text/html; charset=UTF-8")
                     .setSubject(subject)
                     .initMacro()
@@ -75,7 +78,7 @@ public class Checkout extends HttpServlet {
                     .appendMacro("TOTAL", total)
                     .appendMacro("PHONE", phone)
                     .sendTemplate(new URL("http://localhost:8080/LaptopHubWeb/templates/noti-ord-admin.jsp"));
-        } catch (MalformedURLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(ForgotPassword.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -104,6 +107,7 @@ public class Checkout extends HttpServlet {
             }else{
                 cart = new Cart();
             }
+            out.print(cart);
             User acc = null;
             Date date = null;
             String time = null;
@@ -125,7 +129,7 @@ public class Checkout extends HttpServlet {
                         payment="WALLET";
                     }
                     acc = (User) user;
-                    String email = acc.getEmail();
+                    String email = request.getParameter("email");
                     String username = acc.getUserName();
                     if(payment.equals("WALLET")){
                         Wallet wallet = w.getWallet(acc.getUserName());
@@ -138,20 +142,21 @@ public class Checkout extends HttpServlet {
                                 dao.addOrderDetail(acc, i, date, time);
                             }
                             Order order = dao.getOrder(acc, date, time);
+                            new Thread(() -> {
+                                sendOrderNoti(email, "THÔNG BÁO ĐƠN HÀNG", username, Integer.toString(order.getOrderId()), Integer.toString(order.getTotalMoney()), phone );
+                            }).start();
                             messageOrder = "Đặt hàng thành công! Chúng tôi sẽ sớm liên hệ với bạn để xác nhận đơn hàng!";
                             orderId = dao.getOrder(acc, date, time).getOrderId();
                             request.setAttribute("msg", messageOrder);
                             request.setAttribute("id", orderId);
                             
-                            new Thread(() -> {
-                                sendOrderNoti(email, "Verification code", username, Integer.toString(order.getOrderId()), Integer.toString(order.getTotalMoney()), phone );
-                            }).start();
+                            
                             request.getRequestDispatcher("success.jsp").forward(request, response);
                         }else{
                             //thiếu tiền ví->thực hiện nộp tiền vào tài khoản
                             messageOrder = "Đặt hàng thất bại! Hiện số dư ví của bạn không đủ! Vui lòng nạp thêm tiền vào ví";
                             request.setAttribute("msg", messageOrder);
-                            request.getRequestDispatcher("error.jsp").forward(request, response);
+//                            request.getRequestDispatcher("error.jsp").forward(request, response);
                         }
                     }else if(payment.equals("COD")){
                         date = dateUtils.converseDateNow(dateUtils.getDateNow());
@@ -160,13 +165,14 @@ public class Checkout extends HttpServlet {
                         for (CartItem i : cart.getItems()) {
                                 dao.addOrderDetail(acc, i, date, time);
                         }
-                        messageOrder = "Đặt hàng thành công! Chúng tôi sẽ sớm liên hệ với bạn để xác nhận đơn hàng!";
                         Order orderCOD = dao.getOrder(acc, date, time);
+                        new Thread(() -> {
+                                sendOrderNoti(email, "THÔNG BÁO ĐƠN HÀNG", username, Integer.toString(orderCOD.getOrderId()), Integer.toString(orderCOD.getTotalMoney()), phone );
+                            }).start();
+                        messageOrder = "Đặt hàng thành công! Chúng tôi sẽ sớm liên hệ với bạn để xác nhận đơn hàng!";
                         request.setAttribute("msg", messageOrder);
                         request.setAttribute("id", orderCOD.getOrderId());
-                        new Thread(() -> {
-                                sendOrderNoti(email, "Verification code", username, Integer.toString(orderCOD.getOrderId()), Integer.toString(orderCOD.getTotalMoney()), phone);
-                            }).start();
+                        
                         request.getRequestDispatcher("success.jsp").forward(request, response);
                     }
                 }else{

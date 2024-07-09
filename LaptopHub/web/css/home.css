@@ -57,19 +57,7 @@
 
 /* search-bar.css */
 
-.search-bar {
-    height: 500px;
-    width: 97.3%;
-    background-image: url(../images/logo/searchBar.png);
-    background-size: cover; /* Ensure the background image covers the entire container */
-    background-position: center; /* Center the background image */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-}
+
 
 .search-bar .title h1 {
     color: white;

@@ -153,13 +153,13 @@
                         </td>
                         <td id="totalPrice${status.index}">${i.getTotalMoney()}</td>
                         <td style="text-align: center">
-                            <input type="hidden" name="id" value="${i.product.getProductId()}"/>
-                            <a href="CartServlet?action=deletecart&product_id=${i.product.getProductId()}"><i class="fa fa-trash-o"></i></a>
+                            <!--<input type="hidden" name="id" value="${i.product.getProductId()}"/>-->
+                            <a href="./cart?cmd=deletecart&action=deletecart&product_id=${i.product.getProductId()}"><i class="fa fa-trash-o"></i></a>
                         </td>
                     </tr>
                 </c:forEach>
             </table>
-            <form action="Checkout" method="GET">
+            <form action="./checkout" method="GET">
                 <div class="total-cart">
                     <table>
                         <tr>

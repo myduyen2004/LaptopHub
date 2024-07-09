@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.List;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -27,6 +28,7 @@ import laptophub.utils.ImageHandler;
  *
  * @author myduyen
  */
+
 @MultipartConfig
 public class ProductManagement extends HttpServlet {
 
@@ -63,13 +65,14 @@ public class ProductManagement extends HttpServlet {
                 theCommand = "LIST";
             }
             switch (theCommand) {
+                case "ADD":
+                    add(request, response);
                 case "LIST":
                     listProduct(request, response);
                     break;
                 case "LOAD":
                     loadProduct(request, response);
                     break;
-                
                 case "DETAIL":
                     detailProduct(request, response);
                     break;
@@ -82,7 +85,10 @@ public class ProductManagement extends HttpServlet {
             Logger.getLogger(ProductManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        request.getRequestDispatcher("./dashboard/add-product-form.jsp").forward(request, response);
+    }
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -105,14 +111,15 @@ public class ProductManagement extends HttpServlet {
             Product p = new Product(supplierId, categoryId, productName, quantity, unitPrice, isDiscount, description, releaseDate, discount, statusProduct);
             out.print(p);
             prodDao.addProduct(p);
-
             Collection<Part> parts = request.getParts();
             imgList = imageHandler.productImageUploadHandle(parts, prodDao.getMaxId());
             for (ImageProduct img : imgList) {
                 prodDao.insertImageProduct(img);
             }
+//            out.print(parts);
+
             request.setAttribute("sucess", "Thêm sản phẩm thành công");
-//            listProduct(request, response);
+            listProduct(request, response);
         } catch (IOException e) {
             response.getWriter().write("Error: " + e.getMessage());
             request.setAttribute("error", "Thêm sản phẩm thất bại");
@@ -151,7 +158,6 @@ public class ProductManagement extends HttpServlet {
         
     public void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ParseException {
         int id = Integer.parseInt(request.getParameter("productId"));
-        
         prodDao.deleteImageProduct(id);
         prodDao.deleteProduct(id);
         listProduct(request, response);

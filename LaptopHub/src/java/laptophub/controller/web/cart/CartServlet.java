@@ -6,6 +6,7 @@ package laptophub.controller.web.cart;
 
 import java.io.IOException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,6 +15,9 @@ import jakarta.servlet.http.HttpSession;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import laptophub.controller.web.shop.HomeServlet;
 import laptophub.dal.ProductDAO;
 import laptophub.model.Cart;
 import laptophub.model.CartItem;
@@ -24,6 +28,8 @@ import laptophub.utils.CookieUtils;
  *
  * @author admin
  */
+@WebServlet(name = "CartServlet", urlPatterns = {"/cart"})
+
 public class CartServlet extends HttpServlet {
 
     /**
@@ -35,7 +41,7 @@ public class CartServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    public void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession(true);
@@ -127,7 +133,6 @@ public class CartServlet extends HttpServlet {
                 request.setAttribute("cart", cart);
                 request.getRequestDispatcher("cartPage.jsp").forward(request, response);
             }
-
         } else {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }
@@ -145,11 +150,31 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        PrintWriter out = response.getWriter();
+        try {
+            String action = request.getParameter("cmd");
+            if (action == null) {
+                action = "add"; // Default action to list products
+            }
+            out.print(action);
+            switch (action) {
+                case "add":
+                    add(request, response);
+                    break;
+                case "show":
+                    processRequest(request, response);
+                    break;
+                case "deletecart":
+                    processRequest(request, response);
+                    break;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    
+    public void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         CookieUtils util = new CookieUtils();
         HttpSession session = request.getSession();
@@ -165,7 +190,7 @@ public class CartServlet extends HttpServlet {
             } else {
                 cart = new Cart();
             }
-
+            
             Cookie[] arr = request.getCookies();
             if (arr != null) {
                 for (Cookie c : arr) {
@@ -173,17 +198,22 @@ public class CartServlet extends HttpServlet {
                         txt += c.getValue();
                         c.setMaxAge(0);
                         response.addCookie(c);
+                        
                     }
                 }
             }
+            
             String quantityOrder = request.getParameter("quantityOrder");
             String product_id = request.getParameter("id");
+            out.print(product_id);
+            out.print(quantityOrder);
             if (txt.isEmpty()) {
                 txt = product_id + ":" + quantityOrder;
             } else {
                 txt = txt + "/" + product_id + ":" + quantityOrder;
             }
             CookieUtils.add(username + "cart", txt, 10, response);
+//            out.print(txt);
             cart = new Cart(txt, listProduct);
             List<CartItem> list = cart.getItems();
             CookieUtils.add(username + "size", String.valueOf(list.size()), 10, response);
@@ -192,7 +222,9 @@ public class CartServlet extends HttpServlet {
             session.setAttribute("cart", cart);
             session.setAttribute("total", cart.getTotalMoney());
             session.setAttribute("size", list.size());
-            request.getRequestDispatcher("ProductDetail?id=" + product_id).forward(request, response);
+            request.setAttribute("id", product_id);
+            out.print(cart);
+            request.getRequestDispatcher("./home?action=DETAILS&id=" + product_id).forward(request, response);
         } else {
             request.getRequestDispatcher("login.jsp").forward(request, response);
         }

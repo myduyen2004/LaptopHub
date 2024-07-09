@@ -66,7 +66,7 @@
     </head>
     <body>
         <%@include file="../includes/header.jsp" %>
-        <form action="UpdateProduct" method="POST" enctype="multipart/form-data">
+        <form action="./updateproduct" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="command" value="UPDATE">
             <input type="hidden" name="productId"
                    value="${THE_PRODUCT.getProductId()}">
@@ -180,7 +180,7 @@
 
                         </div>
                         <input type="submit" class="btn btn-primary btn-block" value="Update sản phẩm">
-                        <a href="../ProductManagement" type="button" class="btn btn-secondary btn-block">Quay trở lại trang quản trị</a>
+                        <a href="./manageproduct" type="button" class="btn btn-secondary btn-block">Quay trở lại trang quản trị</a>
                     </div>
                 </div>
             </div>

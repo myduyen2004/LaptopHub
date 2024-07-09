@@ -11,6 +11,7 @@ import com.google.gson.JsonSyntaxException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -36,8 +37,7 @@ import org.apache.http.util.EntityUtils;
  *
  * @author admin
  */
-//@WebServlet(name = "ManageOrder", urlPatterns = {"/admin/manageOrder"})
-
+@WebServlet(name = "ManageOrder", urlPatterns = {"/manageord"})
 public class ManageOrder extends HttpServlet {
    
     /** 
@@ -140,7 +140,8 @@ public class ManageOrder extends HttpServlet {
         List<OrderRequest.Product> list = orderDao.getOrderDetail(orderId);
         request.setAttribute("THE_ORDER", o);
         request.setAttribute("THE_LIST", list);
-
+        out.print(o);
+        out.print(list);
         request.getRequestDispatcher("dashboard/confirm-form.jsp").forward(request, response);
     }
     public void confirmOrder(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
@@ -193,9 +194,6 @@ public class ManageOrder extends HttpServlet {
 //        out.print(orderRequest.getProducts());
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(orderRequest);
-        out.print(json);
-        System.out.println("JSON Data: " + json);
-        out.print(json);
         try(Reader reader = request.getReader()){
             Gson gson01 = new GsonBuilder().setPrettyPrinting().create();
             OrderRequest orderRequest01 = gson.fromJson(reader, OrderRequest.class);
@@ -213,20 +211,18 @@ public class ManageOrder extends HttpServlet {
                 String responseString = EntityUtils.toString(responseEntity, StandardCharsets.UTF_8);
                 // Trả phản hồi về client
                 response.setContentType("application/json; charset=UTF-8");
-                out.print(responseString);
-                out.flush();
+                request.setAttribute("success", "Thành công xác nhận, đơn hàng sẽ được giao GHTK");
+                
             }catch(Exception e){
                 out.print(e.getMessage());
             }
             orderDao.confirmOrderStatus(orderId);
-            request.setAttribute("success", "Thành công xác nhận, đơn hàng sẽ được giao GHTK");
-            
+            listOrder(request, response);
         }catch(JsonSyntaxException e){
-            out.print(e.getMessage());
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             request.setAttribute("error", "Thất bại");
         }
-//        listOrder(request, response);
+        
         
     }
     
@@ -258,10 +254,9 @@ public class ManageOrder extends HttpServlet {
                 } else {
                     response.setContentType("application/json");
                     response.getWriter().write("{\"success\": false, \"message\": \"Hủy đơn hàng thất bại.\"}");
-                    request.setAttribute("error", "Đơn hàng đã được hủy bên hệ thống GHTK");
+                    request.setAttribute("success", "Đơn hàng đã được hủy bên hệ thống GHTK");
                 }
             }
-            
         } catch (IOException e) {
             request.setAttribute("error", "Hủy đơn thất bại");
             e.printStackTrace();

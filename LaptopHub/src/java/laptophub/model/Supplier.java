@@ -23,7 +23,12 @@ public class Supplier {
         this.imgLogo = imgLogo;
     }
 
-    
+       public Supplier(String companyName, String homePage, String country, String imgLogo) {
+        this.companyName = companyName;
+        this.homePage = homePage;
+        this.country = country;
+        this.imgLogo = imgLogo;
+    }
     public int getSupplierId() {
         return supplierId;
     }

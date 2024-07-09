@@ -28,7 +28,7 @@ public class Gmail {
     private final String smtpHost = "smtp.gmail.com";
     private final String smtpPort = "587";
     private final String username = "duyenvo31032004@gmail.com";
-    private final String password = "yakkbhhgpsixufjv";
+    private final String password = "pkizewdpvywrqihs";
 
     private final String fromEmail = username;
     private String toEmail;

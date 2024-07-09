@@ -52,18 +52,20 @@
 
 /* search-bar.css */
 
+/* Thêm các lớp CSS tương ứng với từng category */
+
+
+/* Các style khác cho thanh tìm kiếm và sản phẩm */
 .search-bar {
     height: 500px;
     width: 100%;
-    background-image: url(../images/logo/searchBar.png);
-    background-size: cover; /* Ensure the background image covers the entire container */
-    background-position: center; /* Center the background image */
+    background-size: cover; /* Đảm bảo hình ảnh nền phủ toàn bộ phần tử */
+    background-position: center; /* Căn giữa hình ảnh nền */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-
 }
 
 .search-bar .title h1 {
@@ -213,7 +215,7 @@
     text-decoration: line-through;
 }
 
-.all-product .link {
+/*.all-product .link {
     display: inline-block;
     margin-top: 10px;
     background-color: #460E6D;
@@ -227,5 +229,5 @@
 
 .all-product .link:hover {
     background-color: #6F1D99;
-}
+}*/
     

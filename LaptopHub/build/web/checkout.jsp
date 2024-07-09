@@ -20,7 +20,7 @@
         <div class="Checkout_section py-5" id="accordion">
             <div class="container">
                 <div class="checkout_form">
-                    <form action="Checkout" method="POST">
+                    <form action="./checkout" method="POST">
                         <div class="row">
                             <div class="col-lg-5 col-md-5 mb-4">
                                 <h3 class="bg-dark text-white text-center py-2">Chi tiết đơn hàng</h3>
@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Email </label>
-                                    <input class="form-control" value="${sessionScope.email}" type="text">
+                                    <input class="form-control" name = "email"  type="text">
                                 </div>
                                 <div class="form-group">
                                     <label>Địa chỉ</label>
@@ -60,8 +60,8 @@
                                         <tr>
                                             <th>STT</th>
                                             <th>Sản phẩm</th>
-                                            <th>Nhãn hàng</th>
                                             <th>Số lượng</th>
+                                            <th>Nhãn hàng</th>
                                             <th>Tổng</th>
                                         </tr>
                                     </thead>

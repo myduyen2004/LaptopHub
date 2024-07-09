@@ -71,7 +71,7 @@
     <div class="container">
         <img height="150px" width="150px" src="http://localhost:8080/LaptopHubWeb/images/logo/logo.png" alt="alt"/>
         <h1>NHẬN MÃ OTP</h1>
-        <form action="ForgotPassword" method="post" >
+        <form action="../forgotpass" method="post" >
             <input type="hidden" name="cmd" value="1">
             <input type="text" name="receiveEmail" placeholder="Nhập email đăng kí của bạn" required><br>
             <input type="submit" value="Gửi OTP">

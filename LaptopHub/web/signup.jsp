@@ -95,7 +95,7 @@
         <jsp:include page="/includes/header.jsp" />
         <div class="signup-container">
             <h1 class="header-text">Đăng Kí</h1>
-            <form class="signup-form" action="SignupServlet" method="post">
+            <form class="signup-form" action="./signup" method="post">
                 <div>
                     <label for="username">Tên đăng nhập:</label>
                     <input type="text" id="username" name="username" placeholder="Nhập tại đây" required>

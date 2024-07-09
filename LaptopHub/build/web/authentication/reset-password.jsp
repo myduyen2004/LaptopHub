@@ -83,7 +83,7 @@
         <div class="container">
             <img height="100px" width="100px" src="http://localhost:8080/LaptopHubWeb/images/logo/logo.png" alt="alt"/>
             <h1>NHẬP MẬT KHẨU MỚI</h1>
-            <form action="ForgotPassword" method="post" >
+            <form action="./forgotpass" method="post" >
                 <input type="hidden" name="cmd" value="3">
                 <input type="hidden" name="email" value="${email}">
                 <input type="password" name="password" placeholder="Nhập mật khẩu mới" required><br><br>

@@ -24,13 +24,19 @@
             white-space: pre-wrap;
             font-size: 15px
         }
+        .price h4{
+            font-weight: bolder;
+            /*    background: -webkit-linear-gradient(#0000cc, #990099);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;*/
+            color: red;
+        }
     </style>
 </head>
 <body class="prd-body">
     <%@include file="/includes/header.jsp" %>
     <div class="container">
         <section class="general-info">
-
             <div class="left-side">
                 <picture class="show-bar">               
                     <c:forEach var="img" items="${product.getImageList()}">
@@ -51,7 +57,7 @@
                     <i class="fa-solid fa-angle-right fa-6x fa-fade" style="color: #6a3ebb;" id="nextButton"></i>
                 </div>
             </div>
-            <form action="CartServlet?id=${product.getProductId()}" method="POST">
+            <form action="./cart?cmd=add">
                 <div class="right-side">
                     <div class="top-info">
                         <div class="prd-name">
@@ -119,8 +125,8 @@
                     <div class="quantity">
                         <p>Số lượng: <i class="fa-solid fa-minus" onclick="decreaseQuantity()"></i><input type="text" name="quantityOrder" id="quantityInput" value="1"><i class="fa-solid fa-plus" onclick="increaseQuantity()"></i></p>
                     </div>
-
                     <div class="buy-bar">
+                        <input type="hidden" name="id" value="${product.getProductId()}">
                         <input type="submit" value="Thêm Vào Giỏ Hàng" class="button"/>
                         <input type="submit" value="Mua Ngay" onclick="window.location.href = '#'; return false;" class="button"/>
                     </div>
@@ -147,7 +153,7 @@
 
             // Truyền giá trị vào href
             var productId = "${product.getProductId()}"; // Thay thế bằng mã sản phẩm thực tế
-            var cartUrl = "CartServlet?productId=" + productId + "&quantity=" + quantityValue;
+            var cartUrl = "./cart?productId=" + productId + "&quantity=" + quantityValue;
 
             // Chuyển hướng đến trang giỏ hàng
             window.location.href = cartUrl;

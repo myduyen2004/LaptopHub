@@ -42,7 +42,7 @@
         <div class="sidebar-logo">
             <!-- Logo Header -->
             <div class="logo-header" data-background-color="dark">
-                <a href="HomeServlet" class="logo" style="list-style: none; color: white">
+                <a href="./home" class="logo" style="list-style: none; color: white">
                     <img style="width: 90px; height: auto; "
                          src="images/logo/logo.png"
                          alt="navbar brand"
@@ -67,7 +67,7 @@
                 <ul class="nav nav-secondary">
                     <li class="nav-item">
                         <a 
-                            href="HomeServlet"
+                            href="./home"
                             class="collapsed"
                             >
                             <i class="fas fa-home"></i>
@@ -81,38 +81,32 @@
                         <h4 class="text-section">Quản lí</h4>
                     </li>
                     <li class="nav-item">
-                        <a href="DashboardServlet" >
+                        <a href="./admin" >
                             <i class="fas fa-desktop"></i>
                             <p>Tổng quan</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="ProductManagement">
+                        <a href="./manageproduct">
                             <i class="fas fa-layer-group"></i>
                             <p>Sản phẩm</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="">
+                        <a href="./manageacc">
                             <i class="fas fa-th-list"></i>
                             <p>Tài khoản</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="">
-                            <i class="fas fa-pen-square"></i>
-                            <p>Doanh thu</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="ProductManagement">
+                        <a href="./supplier">
                             <i class="far fa-chart-bar"></i>
                             <p>Nhà cung cấp</p>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="ProductManagement">
+                        <a href="./manageord">
                             <i class="fas fa-bars"></i>
                             <p>Đơn dặt hàng</p>
                         </a>

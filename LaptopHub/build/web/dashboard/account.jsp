@@ -4,6 +4,7 @@
     Author     : admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,7 +16,7 @@
             name="viewport"
             />
         <!-- Fonts and icons -->
-        <script src="../assets/js/plugin/webfont/webfont.min.js"></script>
+        <script src="assets/js/plugin/webfont/webfont.min.js"></script>
         <script>
             WebFont.load({
                 google: {families: ["Public Sans:300,400,500,600,700"]},
@@ -26,423 +27,195 @@
                         "Font Awesome 5 Brands",
                         "simple-line-icons"
                     ],
-                    urls: ["../assets/css/fonts.min.css"]
+                    urls: ["assets/css/fonts.min.css"]
                 },
                 active: function () {
                     sessionStorage.fonts = true;
                 }
             });
         </script>
+        <style>
+            .button-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 250px;
+                margin-bottom: 20px;
+            }
+
+            .but {
+                text-decoration: none;
+                padding: 10px 10px;
+                border-radius: 5px;
+                font-size: 16px;
+                transition: background-color 0.3s, color 0.3s;
+            }
+
+            .but.update {
+                background-color: #4CAF50; /* Green */
+                color: white;
+            }
+
+            .but.update:hover {
+                background-color: #45a049;
+            }
+
+            .but.delete {
+                background-color: #f44336; /* Red */
+                color: white;
+            }
+
+            .but.delete:hover {
+                background-color: #da190b;
+            }
+            .but.detail:hover {
+                background-color: #0066CC;
+            }
+
+        </style>
 
         <!-- CSS Files -->
-        <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="../assets/css/plugins.min.css" />
-        <link rel="stylesheet" href="../assets/css/kaiadmin.min.css" />
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/css/plugins.min.css" />
+        <link rel="stylesheet" href="assets/css/kaiadmin.min.css" />
 
     </head>
     <body>
         <%@include file="left-container.jsp" %>
         <%@include file="nav-admin.jsp" %>
-        
+
         <div class="container">
-          <div class="page-inner">
-            <div class="page-header">
-              <h3 class="fw-bold mb-3">TÀI KHOẢN KHÁCH HÀNG</h3> 
-            </div>
-              
-
-              <div class="col-md-12">
-                <div class="card">
-                  <div class="card-header">
-                    <div class="d-flex align-items-center">
-                      
-                      <button
-                        class="btn btn-primary btn-round ms-auto"
-                        data-bs-toggle="modal"
-                        data-bs-target="#addRowModal"
-                      >
-                        <i class="fa fa-plus"></i>
-                        Thêm tài khoản
-                      </button>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <!-- Modal -->
-
-                    <div class="table-responsive">
-                      <table
-                        id="add-row"
-                        class="display table table-striped table-hover"
-                      >
-                        <thead>
-                          <tr>
-                            <th>Avatar</th>
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th style="width: 10%">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td><div class="avatar">
-                              <img src="../assets/img/jm_denis.jpg" alt="..." class="avatar-img rounded-circle">
-                            </div></td>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>
-                              <div class="form-button-action">
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-primary btn-lg"
-                                  data-original-title="Edit Task"
-                                >
-                                  <i class="fa fa-edit"></i>
-                                </button>
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-danger"
-                                  data-original-title="Remove"
-                                >
-                                  <i class="fa fa-times"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td><div class="avatar">
-                              <img src="assets/img/jm_denis.jpg" alt="..." class="avatar-img rounded-circle">
-                            </div></td>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>
-                              <div class="form-button-action">
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-primary btn-lg"
-                                  data-original-title="Edit Task"
-                                >
-                                  <i class="fa fa-edit"></i>
-                                </button>
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-danger"
-                                  data-original-title="Remove"
-                                >
-                                  <i class="fa fa-times"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td><div class="avatar">
-                              <img src="../assets/img/jm_denis.jpg" alt="..." class="avatar-img rounded-circle">
-                            </div></td>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                            <td>San Francisco</td>
-                            <td>
-                              <div class="form-button-action">
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-primary btn-lg"
-                                  data-original-title="Edit Task"
-                                >
-                                  <i class="fa fa-edit"></i>
-                                </button>
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-danger"
-                                  data-original-title="Remove"
-                                >
-                                  <i class="fa fa-times"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Cedric Kelly</td>
-                            <td>Senior Javascript Developer</td>
-                            <td>Edinburgh</td>
-                            <td>
-                              <div class="form-button-action">
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-primary btn-lg"
-                                  data-original-title="Edit Task"
-                                >
-                                  <i class="fa fa-edit"></i>
-                                </button>
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-danger"
-                                  data-original-title="Remove"
-                                >
-                                  <i class="fa fa-times"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Airi Satou</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>
-                              <div class="form-button-action">
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-primary btn-lg"
-                                  data-original-title="Edit Task"
-                                >
-                                  <i class="fa fa-edit"></i>
-                                </button>
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-danger"
-                                  data-original-title="Remove"
-                                >
-                                  <i class="fa fa-times"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Brielle Williamson</td>
-                            <td>Integration Specialist</td>
-                            <td>New York</td>
-                            <td>
-                              <div class="form-button-action">
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-primary btn-lg"
-                                  data-original-title="Edit Task"
-                                >
-                                  <i class="fa fa-edit"></i>
-                                </button>
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-danger"
-                                  data-original-title="Remove"
-                                >
-                                  <i class="fa fa-times"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Herrod Chandler</td>
-                            <td>Sales Assistant</td>
-                            <td>San Francisco</td>
-                            <td>
-                              <div class="form-button-action">
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-primary btn-lg"
-                                  data-original-title="Edit Task"
-                                >
-                                  <i class="fa fa-edit"></i>
-                                </button>
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-danger"
-                                  data-original-title="Remove"
-                                >
-                                  <i class="fa fa-times"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Rhona Davidson</td>
-                            <td>Integration Specialist</td>
-                            <td>Tokyo</td>
-                            <td>
-                              <div class="form-button-action">
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-primary btn-lg"
-                                  data-original-title="Edit Task"
-                                >
-                                  <i class="fa fa-edit"></i>
-                                </button>
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-danger"
-                                  data-original-title="Remove"
-                                >
-                                  <i class="fa fa-times"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Colleen Hurst</td>
-                            <td>Javascript Developer</td>
-                            <td>San Francisco</td>
-                            <td>
-                              <div class="form-button-action">
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-primary btn-lg"
-                                  data-original-title="Edit Task"
-                                >
-                                  <i class="fa fa-edit"></i>
-                                </button>
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-danger"
-                                  data-original-title="Remove"
-                                >
-                                  <i class="fa fa-times"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Sonya Frost</td>
-                            <td>Software Engineer</td>
-                            <td>Edinburgh</td>
-                            <td>
-                              <div class="form-button-action">
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-primary btn-lg"
-                                  data-original-title="Edit Task"
-                                >
-                                  <i class="fa fa-edit"></i>
-                                </button>
-                                <button
-                                  type="button"
-                                  data-bs-toggle="tooltip"
-                                  title=""
-                                  class="btn btn-link btn-danger"
-                                  data-original-title="Remove"
-                                >
-                                  <i class="fa fa-times"></i>
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
+            <div class="page-inner">
+                <div class="page-header">
+                    <h3 class="fw-bold mb-3">TÀI KHOẢN KHÁCH HÀNG</h3> 
                 </div>
-              </div>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- Modal -->
+                            <div class="table-responsive">
+                                <table
+                                    id="add-row"
+                                    class="display table table-striped table-hover"
+                                    >
+                                    <thead>
+                                        <tr>
+                                            <th>Avatar</th>
+                                            <th>Id</th>
+                                            <th>Tên đăng nhập</th>
+                                            <th>Quyền</th>
+                                            <th>Mật khẩu</th>
+                                            <th>Ngày sinh</th>
+                                            <th>Địa chỉ</th>
+                                            <th>SĐT</th>
+                                            <th style="width: 10%">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach var="tempUser" items="${requestScope.userList}">
+                                           <c:url var="tempLink" value="./manageacc">
+                                                <c:param name="command" value="LOAD"></c:param>
+                                                <c:param name="userId" value="${tempUser.getUserId()}"></c:param>
+                                            </c:url>
+                                           <c:url var="deleteLink" value="./manageacc">
+                                                <c:param name="command" value="DELETE"></c:param>
+                                                <c:param name="userId" value="${tempUser.getUserId()}"></c:param>
+                                                <c:param name="userName" value="${tempUser.getUserName()}"></c:param>
+                                            </c:url>
+                                            <tr>
+                                                <td><img src="${tempUser.image}" alt="alt" width="60px"/></td>
+                                                <td>${tempUser.userId}</td>
+                                                <td>${tempUser.userName}</td>
+                                                <td>${tempUser.roleString()}</td>
+                                                <td>${tempUser.password}</td>
+                                                <td>${tempUser.birthdayString()}</td>
+                                                <td>${tempUser.address}</td>
+                                                <td>${tempUser.phone}</td>
+                                                <td>
+                                                    <div class="button-container "style="width: 120px;">
+                                                        <a href="${tempLink}" class=" but update">Update</a>
+                                                        <a href="${deleteLink}" class="but delete" onclick="if (!(confirm('Sure?')))
+                                                                    return false">Xóa</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
+        </div>    
+        <!--   Core JS Files   -->
+        <script src="assets/js/core/jquery-3.7.1.min.js"></script>
+        <script src="assets/js/core/popper.min.js"></script>
+        <script src="assets/js/core/bootstrap.min.js"></script>
 
-      
-    <!--   Core JS Files   -->
-    <script src="../assets/js/core/jquery-3.7.1.min.js"></script>
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap.min.js"></script>
+        <!-- jQuery Scrollbar -->
+        <script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+        <!-- Datatables -->
+        <script src="assets/js/plugin/datatables/datatables.min.js"></script>
+        <!-- Kaiadmin JS -->
+        <script src="assets/js/kaiadmin.min.js"></script>
+        <!-- Kaiadmin DEMO methods, don't include it in your project! -->
+        <script src="assets/js/setting-demo2.js"></script>
+        <script>
+                                                                $(document).ready(function () {
+                                                                    $("#basic-datatables").DataTable({});
+                                                                    $("#multi-filter-select").DataTable({
+                                                                        pageLength: 5,
+                                                                        initComplete: function () {
+                                                                            this.api()
+                                                                                    .columns()
+                                                                                    .every(function () {
+                                                                                        var column = this;
+                                                                                        var select = $(
+                                                                                                '<select class="form-select"><option value=""></option></select>'
+                                                                                                )
+                                                                                                .appendTo($(column.footer()).empty())
+                                                                                                .on("change", function () {
+                                                                                                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
 
-    <!-- jQuery Scrollbar -->
-    <script src="../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-    <!-- Datatables -->
-    <script src="../assets/js/plugin/datatables/datatables.min.js"></script>
-    <!-- Kaiadmin JS -->
-    <script src="../assets/js/kaiadmin.min.js"></script>
-    <!-- Kaiadmin DEMO methods, don't include it in your project! -->
-    <script src="../assets/js/setting-demo2.js"></script>
-    <script>
-      $(document).ready(function () {
-        $("#basic-datatables").DataTable({});
-        $("#multi-filter-select").DataTable({
-          pageLength: 5,
-          initComplete: function () {
-            this.api()
-              .columns()
-              .every(function () {
-                var column = this;
-                var select = $(
-                  '<select class="form-select"><option value=""></option></select>'
-                )
-                  .appendTo($(column.footer()).empty())
-                  .on("change", function () {
-                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                                                                                                    column
+                                                                                                            .search(val ? "^" + val + "$" : "", true, false)
+                                                                                                            .draw();
+                                                                                                });
 
-                    column
-                      .search(val ? "^" + val + "$" : "", true, false)
-                      .draw();
-                  });
+                                                                                        column
+                                                                                                .data()
+                                                                                                .unique()
+                                                                                                .sort()
+                                                                                                .each(function (d, j) {
+                                                                                                    select.append(
+                                                                                                            '<option value="' + d + '">' + d + "</option>"
+                                                                                                            );
+                                                                                                });
+                                                                                    });
+                                                                        }
+                                                                    });
 
-                column
-                  .data()
-                  .unique()
-                  .sort()
-                  .each(function (d, j) {
-                    select.append(
-                      '<option value="' + d + '">' + d + "</option>"
-                    );
-                  });
-              });
-          }
-        });
+                                                                    // Add Row
+                                                                    $("#add-row").DataTable({
+                                                                        pageLength: 5
+                                                                    });
 
-        // Add Row
-        $("#add-row").DataTable({
-          pageLength: 5
-        });
+                                                                    var action =
+                                                                            '<td> <div class="form-button-action"> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
 
-        var action =
-          '<td> <div class="form-button-action"> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"> <i class="fa fa-edit"></i> </button> <button type="button" data-bs-toggle="tooltip" title="" class="btn btn-link btn-danger" data-original-title="Remove"> <i class="fa fa-times"></i> </button> </div> </td>';
-
-        $("#addRowButton").click(function () {
-          $("#add-row")
-            .dataTable()
-            .fnAddData([
-              $("#addName").val(),
-              $("#addPosition").val(),
-              $("#addOffice").val(),
-              action
-            ]);
-          $("#addRowModal").modal("hide");
-        });
-      });
-    </script>
+                                                                    $("#addRowButton").click(function () {
+                                                                        $("#add-row")
+                                                                                .dataTable()
+                                                                                .fnAddData([
+                                                                                    $("#addName").val(),
+                                                                                    $("#addPosition").val(),
+                                                                                    $("#addOffice").val(),
+                                                                                    action
+                                                                                ]);
+                                                                        $("#addRowModal").modal("hide");
+                                                                    });
+                                                                });
+        </script>
     </body>
 </html>

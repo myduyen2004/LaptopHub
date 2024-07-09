@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -23,6 +24,8 @@ import laptophub.model.Product;
  *
  * @author admin
  */
+@WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
+
 public class HomeServlet extends HttpServlet {
 
     /**
@@ -36,31 +39,33 @@ public class HomeServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        out.print("in gì đó");
-        try {
-            String action = request.getParameter("action");
-            if (action == null) {
-                action = "list"; // Default action to list products
-            }
-
-            switch (action) {
-                case "list":
-                    homePage(request, response);
-                    break;
-                case "Laptop":
-                case "Tablet":
-                case "PC":
-                case "Screen":
-                    categoryPage(request, response, action);
-                    break;
-                default:
-                    homePage(request, response);
-                    break;
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        PrintWriter out = response.getWriter();
+//        try {
+//            String action = request.getParameter("action");
+//            if (action == null) {
+//                action = "list"; // Default action to list products
+//            }
+//            out.print(action);
+//            switch (action) {
+//                case "list":
+//                    homePage(request, response);
+//                    break;
+//                case "Laptop":
+//                case "Tablet":
+//                case "PC":
+//                case "Screen":
+//                    categoryPage(request, response, action);
+//                    break;
+//                case "DETAILS":
+//                    detail(request, response);
+//                    break;
+//                default:
+////                    homePage(request, response);
+//                    break;
+//            }
+//        } catch (Exception ex) {
+//            Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -76,13 +81,12 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        out.print("in gì đó");
         try {
             String action = request.getParameter("action");
             if (action == null) {
                 action = "list"; // Default action to list products
             }
-
+            out.print(action);
             switch (action) {
                 case "list":
                     homePage(request, response);
@@ -92,6 +96,10 @@ public class HomeServlet extends HttpServlet {
                 case "PC":
                 case "Screen":
                     categoryPage(request, response, action);
+                    break;
+                case "DETAILS":
+                    out.print(request.getParameter("id"));
+                    detail(request, response);
                     break;
                 default:
                     homePage(request, response);
@@ -173,4 +181,22 @@ public class HomeServlet extends HttpServlet {
             Logger.getLogger(HomeServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public void detail(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
+        response.setContentType("text/html;charset=UTF-8");
+        String id = request.getParameter("id");
+        out.print(id);
+        int prdId = Integer.parseInt(id);
+        ProductDAO prdDAO = new ProductDAO();
+        Product prd = prdDAO.getProductById(prdId);
+        
+        out.print(prd);
+
+        request.setAttribute("product", prd);
+//        out.print("ihjafgadggfgdsa");
+        request.getRequestDispatcher("productDetail.jsp").forward(request, response);
+    }
+    
 }

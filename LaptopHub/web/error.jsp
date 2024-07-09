@@ -83,9 +83,9 @@
                 <img src="images/others/error.png" alt="Success Icon" width="300" height="auto">
                 <h1>ĐẶT HÀNG THẤT BẠI</h1>
                 <p>${msg}</p>
-                <a href="./HomeServlet" class="return" >Quay về trang chủ</a>
+                <a href="./home" class="return" >Quay về trang chủ</a>
                 <br><br><br>
-                <a href="./PaymentServlet" class="add">Nạp thêm tiền vào ví</a>
+                <a href="./payment" class="add">Nạp thêm tiền vào ví</a>
             </div>
             <div class="person_01">
                 <img src="images/others/order.jpg" alt="Person Image">

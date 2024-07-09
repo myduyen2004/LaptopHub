@@ -14,6 +14,7 @@ import java.util.Date;
  * @author admin
  */
 public class User {
+
     private String userName;
     private int userId;
     private String fullName;
@@ -25,25 +26,24 @@ public class User {
     private String phone;
     private boolean status;
     private String email;
-    
+
     public User() {
     }
 
-    public User(String userName, int userId, String fullName, String password, int roleId, String image, Date birthday, String address, String phone, boolean status, String email) {
+    public User(String userName, int userId, String fullName, String password, int roleId, String image, String birthday, String address, String phone, boolean status, String email) {
         this.userName = userName;
         this.userId = userId;
         this.fullName = fullName;
         this.password = password;
         this.roleId = roleId;
         this.image = image;
-        this.birthday = birthday;
+       setBirthday(birthday);
         this.address = address;
         this.phone = phone;
         this.status = status;
         this.email = email;
     }
-    
-    
+
     public User(String userName, int userId, String fullName, String password, int roleId, String image, Date birthday, String address, String phone, boolean status) {
         this.userName = userName;
         this.userId = userId;
@@ -56,10 +56,8 @@ public class User {
         this.phone = phone;
         this.status = status;
     }
-    
 
-
-       public User(String userName, int userId, String fullName, String password, int roleId, String image, String birthday, String address, String phone, boolean status) {
+    public User(String userName, int userId, String fullName, String password, int roleId, String image, String birthday, String address, String phone, boolean status) {
         this.userName = userName;
         this.userId = userId;
         this.fullName = fullName;
@@ -72,7 +70,7 @@ public class User {
         this.status = status;
     }
 
-    public User(String userName, String fullName, String password, int roleId, String image, String birthday, String address, String phone, boolean status) {
+    public User(String userName, String fullName, String password, int roleId, String image, String birthday, String address, String phone, boolean status,String email) {
         this.userName = userName;
         this.fullName = fullName;
         this.password = password;
@@ -82,25 +80,56 @@ public class User {
         this.address = address;
         this.phone = phone;
         this.status = status;
+        this.email=email;
     }
-
-
-       
-
+   
     public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
     }
 
-public String getBirthdayString(Date birthday) {
-    if (birthday == null) {
-        return null;
-    }
-  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return sdf.format(birthday);
-}
+    public String roleString() {
+        String roleString = "";
+        switch (roleId) {
+            case 1:
+                roleString = "User";
 
-public void setBirthdayString(String birthday) {
+                break;
+
+            case 2:
+                roleString = "Admin";
+                break;
+
+            default:
+                throw new AssertionError();
+        }
+        return roleString;
+    }
+
+    public String statusString() {
+        String staString;
+
+        if (status) {
+            staString = "Active";
+        } else {
+            staString = "Non-active";
+        }
+
+        return staString;
+    }
+
+    public String getBirthdayString(Date birthday) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(birthday);
+    }
+
+    public String birthdayString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date d = this.birthday;
+        return sdf.format(d);
+    }
+
+    public void setBirthdayString(String birthday) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
             this.birthday = sdf.parse(birthday);
@@ -156,14 +185,16 @@ public void setBirthdayString(String birthday) {
     public void setImage(String image) {
         this.image = image;
     }
+
     public void setBirthday(String birthday) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
         try {
-            this.birthday=df.parse(birthday);
+            this.birthday = df.parse(birthday);
         } catch (ParseException e) {
             System.out.println(e.getMessage());
         }
     }
+
     public Date getBirthday() {
         return birthday;
     }
@@ -171,6 +202,7 @@ public void setBirthdayString(String birthday) {
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
+
     public String getAddress() {
         return address;
     }
@@ -202,14 +234,11 @@ public void setBirthdayString(String birthday) {
     public void setEmail(String email) {
         this.email = email;
     }
-    
 
     @Override
     public String toString() {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
-        return "User{" + "userName=" + userName + ", userId=" + userId + ", fullName=" + fullName + ", password=" + password + ", roleId=" + roleId + ", image=" + image + ", birthday=" +df.format(birthday)  + ", address=" + address + ", phone=" + phone + ", status=" + status + ", email=" + email+'}';
+        return "User{" + "userName=" + userName + ", userId=" + userId + ", fullName=" + fullName + ", password=" + password + ", roleId=" + roleId + ", image=" + image + ", birthday=" + df.format(birthday) + ", address=" + address + ", phone=" + phone + ", status=" + status + ", email=" + email + '}';
     }
-    
-    
 
 }
